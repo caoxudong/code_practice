@@ -16,9 +16,3 @@ class Node:
     def __init__(self):
         self.data = random.randint(1, 100)
         self.children = []
-
-    def getData(self):
-        return self.data
-
-    def getChildren(self):
-        return self.children
