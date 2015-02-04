@@ -13,12 +13,22 @@ from datastructure.common_datastructure import node
 def visit_node(node):
   print(node.data)
 
-def breadth_first_search(root=node.Node):
+def visit_list(list):
+  for node in list:
+    visit_node(node)
+
+def breadth_first_search_ii(root=node.Node):
   if root:
     queue = []
     queue.append(root)
+
+    node_count_per_level = []
+    node_list_per_level = []
+    node_count_per_level.append(1)
+    node_list_per_level.append(root)
+
     while len(queue):
-      temp_node = queue.pop(0)
+      temp_node = queue.pop(0)      
       visit_node(temp_node)
       if temp_node.children and len(temp_node.children) > 0:
         for e in temp_node.children:
@@ -39,4 +49,4 @@ if __name__ == '__main__':
   right = node.Node
   right.data = 5
   root.children.insert(1, right)
-  breadth_first_search(root)
+  breadth_first_search_ii(root)
