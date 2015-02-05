@@ -21,32 +21,43 @@ def breadth_first_search_ii(root=node.Node):
   if root:
     queue = []
     queue.append(root)
-
-    node_count_per_level = []
-    node_list_per_level = []
-    node_count_per_level.append(1)
-    node_list_per_level.append(root)
+    levels_nodes_queue = []
 
     while len(queue):
-      temp_node = queue.pop(0)      
-      visit_node(temp_node)
-      if temp_node.children and len(temp_node.children) > 0:
-        for e in temp_node.children:
-          queue.append(e)
+      current_level_nodes_queue = []
+
+      while len(queue):
+        temp_node = queue.pop(0)
+        current_level_nodes_queue.append(temp_node)
+
+      levels_nodes_queue.insert(0, current_level_nodes_queue)
+
+      for temp_node in current_level_nodes_queue:
+        if temp_node.children and len(temp_node.children) > 0:
+          for child_node in temp_node.children:
+            queue.append(child_node)
+
+    for temp_queue in levels_nodes_queue:
+      visit_list(temp_queue)
 
 if __name__ == '__main__':
-  root = node.Node
+  root = node.Node()
   root.data = 1
-  left = node.Node
+
+  left = node.Node()
   left.data = 2
-  root.children.insert(0, left)
-  leftleft = node.Node
+  root.children.append(left)
+
+  leftleft = node.Node()
   leftleft.data = 3
-  left.children.insert(0, leftleft)
-  leftright = node.Node
+  left.children.append(leftleft)
+
+  leftright = node.Node()
   leftright.data = 4
-  left.children.insert(0, leftright)
-  right = node.Node
+  left.children.append(leftright)
+
+  right = node.Node()
   right.data = 5
-  root.children.insert(1, right)
+  root.children.append(right)
+
   breadth_first_search_ii(root)
