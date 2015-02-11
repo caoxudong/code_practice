@@ -1,7 +1,8 @@
 leetcode
 =======================
 
-[leetcode algorithms][1]
+* [leetcode algorithms][1]
+* [leetcode database][16]
 
 
 |problem|solution|
@@ -12,7 +13,7 @@ leetcode
 |[Binary Tree Level Order Traversal II][8]|[breadth_first_search_print_bottom_to_up.py][9]|
 |[Reverse Words in a String][10]|[ReverseWordsInString.java][11]|
 |[Longest Substring Without Repeating Characters][12]|[LongestSubstringWithoutRepeatingCharacters.py][13]|
-
+|[Department Top Three Salaries][14]|[DepartmentTopThreeSalaries.sql][15]|
 
 
 
@@ -30,3 +31,6 @@ leetcode
 [11]:   ReverseWordsInString.java
 [12]:   https://oj.leetcode.com/problems/longest-substring-without-repeating-characters/
 [13]:   LongestSubstringWithoutRepeatingCharacters.py
+[14]:   https://oj.leetcode.com/problemset/algorithms/
+[15]:   DepartmentTopThreeSalaries.sql
+[16]:   https://oj.leetcode.com/problemset/database/
