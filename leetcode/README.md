@@ -11,6 +11,7 @@ leetcode
 |[Binary Tree Level Order Traversal][6]|[breadth_first_search.py][7]|
 |[Binary Tree Level Order Traversal II][8]|[breadth_first_search_print_bottom_to_up.py][9]|
 |[Reverse Words in a String][10]|[ReverseWordsInString.java][11]|
+|[Longest Substring Without Repeating Characters][12]|[LongestSubstringWithoutRepeatingCharacters.py][13]|
 
 
 
@@ -27,3 +28,5 @@ leetcode
 [9]:    breadth_first_search_print_bottom_to_up.py
 [10]:   https://oj.leetcode.com/problems/reverse-words-in-a-string/
 [11]:   ReverseWordsInString.java
+[12]:   https://oj.leetcode.com/problems/longest-substring-without-repeating-characters/
+[13]:   LongestSubstringWithoutRepeatingCharacters.py
