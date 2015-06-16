@@ -6,22 +6,28 @@
 
 __author__ = 'caoxudong'
 
-from datastructure.common_datastructure import node
 
-def visit_node(node):
-  print(node.data)
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
 
-def breadth_first_search(root=node.Node):
-  if root:
-    queue = []
-    queue.append(root)
-    while len(queue):
-      temp_node = queue.pop(0)
-      visit_node(temp_node)
-      if temp_node.children and len(temp_node.children) > 0:
-        for e in temp_node.children:
-          queue.append(e)
-
-if __name__ == '__main__':
-  root = node.Node
-  breadth_first_search(root)
+class Solution:
+  # @param {TreeNode} root
+  # @return {integer[][]}
+  def levelOrder(self, root):
+    if root:
+      queue = []
+      queue.append(root)
+      while True:
+        length = len(queue)
+        if length:
+          e = queue.pop(length - 1)
+          if e.left:
+            queue.append(e.left)
+          if e.right:
+            queue.append(e.right)
+    return root
+        
