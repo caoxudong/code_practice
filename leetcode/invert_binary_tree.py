@@ -30,20 +30,29 @@ class Solution:
   # @param {TreeNode} root
   # @return {TreeNode}
   def invertTree(self, root):
-  	return self.invertRecursive(root)
+    return self.invertNonRecursive(root)
 
   def invertRecursive(self, root):
-  	if root:
-  		temp = left
-  		root.left = root.right
-  		root.right = temp
-  		if root.left:
-  			invertRecursive(self, root.left)
-  		if root.right:
-  			invertRecursive(self, root.right)
-  	return root
+    if root:
+      root.left, root.right = root.right, root.left
+      if root.left:
+        self.invertRecursive(root.left)
+      if root.right:
+        self.invertRecursive(root.right)
+    return root
 
   def invertNonRecursive(self, root):
-  	if root:
-  		pass
-  	return root
+    if root:
+      queue = []
+      queue.append(root)
+      while True:
+        length = len(queue)
+        if length == 0:
+          break;
+        e = queue.pop(length - 1)
+        e.left, e.right = e.right, e.left
+        if e.left:
+          queue.append(e.left)
+        if e.right:
+          queue.append(e.right)
+    return root
