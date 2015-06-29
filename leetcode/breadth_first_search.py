@@ -18,16 +18,20 @@ class Solution:
   # @param {TreeNode} root
   # @return {integer[][]}
   def levelOrder(self, root):
+    result = []
     if root:
       queue = []
       queue.append(root)
-      while True:
-        length = len(queue)
-        if length:
-          e = queue.pop(length - 1)
-          if e.left:
-            queue.append(e.left)
-          if e.right:
-            queue.append(e.right)
-    return root
+      while len(queue):
+        level_queue = []
+        next_level_queue = []
+        for node in queue:
+          level_queue.append(node.val)
+          if node.left:
+            next_level_queue.append(node.left)
+          if node.right:
+            next_level_queue.append(node.right)
+        result.append(level_queue)
+        queue = next_level_queue
+    return result
         
