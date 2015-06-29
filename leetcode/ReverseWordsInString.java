@@ -2,8 +2,29 @@
  *  "this is a test" => "test a is this"
  *  https://oj.leetcode.com/problems/reverse-words-in-a-string/
  */
-public class ReverseWordsInString {
-    public static String reverseWords(char[] chars) {
+public class Solution {
+    public static String reverseWords(String s) {
+        if (null == s) {
+            return s;
+        }
+
+        s = s.trim();
+        List<Character> charsList = new LinkedList<Character>();
+        for (int i=0; i<s.length(); i++) {
+            char c = s.charAt(i);
+            if (' ' != c) {
+                charsList.add(c);                
+            } else {
+                if ((i > 0) && (s.charAt(i - 1) != ' ')) {
+                    charsList.add(c);
+                }
+            }
+        }
+        char[] chars = new char[charsList.size()];
+        for (int i=0; i<charsList.size(); i++) {
+            chars[i] = charsList.get(i);
+        }
+
         int count =  chars.length;
         for (int i=0; i<count/2; i++) {
             char c = chars[i];
