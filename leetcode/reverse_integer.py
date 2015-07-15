@@ -27,7 +27,3 @@ class Solution:
         if result < -2147483648:
             result = 0
         return result
-
-s = Solution()
-print(s.reverse(213))
-print(s.reverse(-123))
