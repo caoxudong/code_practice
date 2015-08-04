@@ -24,3 +24,7 @@ class Solution:
   # @param s, a string
   # @return a string
   def reverseWords(self, s):
+    elements = s.split(" ")
+    elements = [x for x in elements if x != ""]
+    elements = elements[::-1]
+    return " ".join(elements)
