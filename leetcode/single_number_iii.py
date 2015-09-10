@@ -22,6 +22,13 @@ class Solution:
     # @param {integer[]} nums
     # @return {integer[]}
     def singleNumber(self, nums):
-      result = []
-      for x in nums: 
+        result = []
+        temp = 0
+        
+        for x in nums: 
+            temp ^= x
+
+        for x in nums:
+            
+
         
