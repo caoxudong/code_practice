@@ -22,13 +22,21 @@ class Solution:
     # @param {integer[]} nums
     # @return {integer[]}
     def singleNumber(self, nums):
-        result = []
-        temp = 0
+        x = 0
+        y = 0
+        tempXORValue = 0
         
-        for x in nums: 
-            temp ^= x
+        for i in nums: 
+            tempXORValue ^= i
 
-        for x in nums:
-            
+        diff = (tempXORValue & (tempXORValue -  1)) ^ tempXORValue
+
+        for i in nums:
+            if diff & i:
+                x ^= i
+            else:
+                y ^= i
+
+        return result
 
         
