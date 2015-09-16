@@ -37,6 +37,6 @@ class Solution:
             else:
                 y ^= i
 
-        return result
+        return [x, y]
 
         
