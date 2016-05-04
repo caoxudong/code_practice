@@ -23,4 +23,16 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        
+        length = len(nums)
+        if length == 0:
+            return 1
+
+        result = 0
+        for index in range(len(nums)):
+            result = index
+            if target <= nums[index]:
+                break
+            else:
+                result = index + 1
+        return result
+                
