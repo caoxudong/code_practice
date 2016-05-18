@@ -58,6 +58,6 @@ for i in range(n):
     else:
         nagetiveCount += 1
 
-print("%.5f" % (positiveCount * 0.1 / n))
-print("%.5f" % (nagetiveCount * 0.1 / n))
-print("%.5f" % (zeroCount * 0.1 / n))
+print("%.6f" % (positiveCount * 1.0 / n))
+print("%.6f" % (nagetiveCount * 1.0 / n))
+print("%.6f" % (zeroCount * 1.0 / n))
