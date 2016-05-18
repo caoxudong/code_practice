@@ -43,3 +43,21 @@ import sys
 
 n = int(input().strip())
 arr = [int(arr_temp) for arr_temp in input().strip().split(' ')]
+
+
+positiveCount = 0
+nagetiveCount = 0
+zeroCount = 0
+
+for i in range(n):
+    temp = arr[i]
+    if temp > 0:
+        positiveCount += 1
+    elif temp == 0:
+        zeroCount += 1
+    else:
+        nagetiveCount += 1
+
+print("%.5f" % (positiveCount * 0.1 / n))
+print("%.5f" % (nagetiveCount * 0.1 / n))
+print("%.5f" % (zeroCount * 0.1 / n))
