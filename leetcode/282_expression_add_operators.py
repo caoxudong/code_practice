@@ -22,3 +22,9 @@ class Solution(object):
         :type target: int
         :rtype: List[str]
         """
+        numbers = [int(e) for e in num]
+        
+        result = []
+        searchQueue = []
+        for n in numbers:
+            
