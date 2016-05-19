@@ -62,3 +62,24 @@ import sys
 t = int(input().strip())
 for a0 in range(t):
     n = int(input().strip())
+
+    max = ""    
+    countOf5 = n
+    for i in range(n):
+        max += "5"
+
+    hasFoundResult = False
+    while countOf5 >= 0:
+        countOf3 = n - countOf5
+        if countOf5 % 3 == 0 and countOf3 % 5 == 0:
+            hasFoundResult = True
+            break
+        else:
+            max = max[:countOf5 - 1] + "3" + max[countOf5:]
+        countOf5 -= 1
+    
+    if hasFoundResult:
+        print(max)
+    else:
+        print("-1")
+            
