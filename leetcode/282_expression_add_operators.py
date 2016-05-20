@@ -22,9 +22,52 @@ class Solution(object):
         :type target: int
         :rtype: List[str]
         """
-        numbers = [int(e) for e in num]
-        
         result = []
-        searchQueue = []
-        for n in numbers:
+        numbers = [int(e) for e in num]
+        numbersLength = len(num)
+        
+        PLUS_OPERATOR = 0
+        MINUS_OPERATOR = 1
+        MULTI_OPERATOR = 2
+        
+        searchStack = []
+        searchStack.append([0, None, numbers[0]])
+        path = str(numbers[0])
+
+        value = 0
+        while len(searchStack) > 0 :
+            element = searchStack.pop()
+            height = element[0]
+            operator = element[1]
+            operand = element[2]
+            
+            if operator == PLUS_OPERATOR:
+                path += "+"
+                value += value + operand
+                path += str(operator)            
+            elif operator == MINUS_OPERATOR:
+                path += "-"
+                value += value - operand
+                path += str(operator)
+            elif operator == MULTI_OPERATOR:
+                path += "*"
+                value += value * operand
+                path += str(operator)
+            
+            if height == (numbersLength - 1):
+                print(path)
+                if value == target:
+                    result.append(path)
+            else:
+                if height < (numbersLength - 1):
+                    nextHeight = height + 1
+                    next = numbers[nextHeight]
+                    searchStack.append([nextHeight, PLUS_OPERATOR, next])
+                    searchStack.append([nextHeight, MINUS_OPERATOR, next])
+                    searchStack.append([nextHeight, MULTI_OPERATOR, next])
+                
+        return result
+
+solution = Solution()
+print(solution.addOperators("123", 6))
             
