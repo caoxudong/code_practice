@@ -15,6 +15,7 @@ Examples:
 https://leetcode.com/problems/expression-add-operators/
 """
 
+
 class Solution(object):
     def addOperators(self, num, target):
         """
@@ -24,7 +25,7 @@ class Solution(object):
         """
         result = []
         numbers = [int(e) for e in num]
-        numbersLength = len(num)
+        numbers_length = len(num)
         
         PLUS_OPERATOR = 0
         MINUS_OPERATOR = 1
@@ -36,6 +37,7 @@ class Solution(object):
 
         value = 0
         while len(searchStack) > 0 :
+            print("stack", searchStack)
             element = searchStack.pop()
             height = element[0]
             operator = element[1]
@@ -54,20 +56,22 @@ class Solution(object):
                 value += value * operand
                 path += str(operator)
             
-            if height == (numbersLength - 1):
+            if height == (numbers_length - 1):
                 print(path)
                 if value == target:
                     result.append(path)
             else:
-                if height < (numbersLength - 1):
-                    nextHeight = height + 1
-                    next = numbers[nextHeight]
-                    searchStack.append([nextHeight, PLUS_OPERATOR, next])
-                    searchStack.append([nextHeight, MINUS_OPERATOR, next])
-                    searchStack.append([nextHeight, MULTI_OPERATOR, next])
-                
+                if height < (numbers_length - 1):
+                    next_height = height + 1
+                    next_index = numbers[next_height]
+                    searchStack.append([next_height, MULTI_OPERATOR, next_index])
+                    searchStack.append([next_height, MINUS_OPERATOR, next_index])
+                    searchStack.append([next_height, PLUS_OPERATOR, next_index])
+
+            # if operator == MULTI_OPERATOR:
+
+
         return result
 
 solution = Solution()
-print(solution.addOperators("123", 6))
-            
+print(solution.addOperators("1234", 10))
