@@ -30,14 +30,13 @@ class Solution(object):
         PLUS_OPERATOR = 0
         MINUS_OPERATOR = 1
         MULTI_OPERATOR = 2
-        
+
         searchStack = []
         searchStack.append([0, None, numbers[0]])
         path = str(numbers[0])
 
         value = 0
         while len(searchStack) > 0 :
-            print("stack", searchStack)
             element = searchStack.pop()
             height = element[0]
             operator = element[1]
@@ -57,9 +56,10 @@ class Solution(object):
                 path += str(operator)
             
             if height == (numbers_length - 1):
-                print(path)
                 if value == target:
                     result.append(path)
+                else:
+                    path = path[:-2]
             else:
                 if height < (numbers_length - 1):
                     next_height = height + 1
