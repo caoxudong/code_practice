@@ -22,6 +22,20 @@ class Solution(object):
         :type num: str
         :type target: int
         :rtype: List[str]
+
+
+        copied from zhuyinghua1203
+        https://leetcode.com/discuss/user/zhuyinghua1203
+        https://leetcode.com/discuss/70597/clean-python-dfs-with-comments
+        accepted, but wrong
+
+        my solution's url is
+
+        testcase: "105" 5
+        zhuyinghua1203's result: ['1*0+5', '10-5']
+        my result: ['1*0+5', '1*05', '10-5']
+
+        actually, the problem has the ambiguity on what the valid numbers are.
         """
         result = []
         numbers = [int(e) for e in num]
