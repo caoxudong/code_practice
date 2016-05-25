@@ -26,7 +26,11 @@ class Solution(object):
         result = []
         numbers = [int(e) for e in num]
         numbers_length = len(num)
-        
+
+
+        if numbers_length == 0:
+            return result
+
         PLUS_OPERATOR = 0
         MINUS_OPERATOR = 1
         MULTI_OPERATOR = 2
