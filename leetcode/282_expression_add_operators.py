@@ -27,7 +27,6 @@ class Solution(object):
         numbers = [int(e) for e in num]
         numbers_length = len(num)
 
-
         if numbers_length == 0:
             return result
 
