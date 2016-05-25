@@ -77,7 +77,6 @@ class Solution(object):
             if height == (numbers_length - 1):
                 if value == target:
                     result.append(path)
-                path = path[:-1 * (numbers_length - height) * 2]
             elif height < (numbers_length - 1):
                 next_height = height + 1
                 next_index = numbers[next_height]
@@ -89,4 +88,4 @@ class Solution(object):
         return result
 
 solution = Solution()
-print(solution.addOperators("105", 5))
+print(solution.addOperators("123", 6))
