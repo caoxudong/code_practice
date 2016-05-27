@@ -22,83 +22,25 @@ class Solution(object):
         :type num: str
         :type target: int
         :rtype: List[str]
-
-
-        copied from zhuyinghua1203
-        https://leetcode.com/discuss/user/zhuyinghua1203
-        https://leetcode.com/discuss/70597/clean-python-dfs-with-comments
-        accepted, but wrong
-
-        my solution's url is
-
-        testcase: "105" 5
-        zhuyinghua1203's result: ['1*0+5', '10-5']
-        my result: ['1*0+5', '1*05', '10-5']
-
-        actually, the problem has the ambiguity on what the valid numbers are.
-        """
+        """       
         result = []
-        numbers = [int(e) for e in num]
-        numbers_length = len(num)
-
-        if numbers_length == 0:
-            return result
-
-        PLUS_OPERATOR = 0
-        MINUS_OPERATOR = 1
-        MULTI_OPERATOR = 2
-        JOINT_OPERATOR = 3
-
-        searchStack = []
-        path = str(numbers[0])
-        value = numbers[0]
-        
-        """
-        element content:
-        * height, zero-based
-        * operator
-        * operand
-        * current_value
-        * current_path
-        """
-        searchStack.append([0, None, numbers[0], value, path])
-
-        while len(searchStack) > 0:
-            element = searchStack.pop()
-            height = element[0]
-            operator = element[1]
-            operand = element[2]
-            value = element[3]
-            path = element[4]
-
-            if operator == PLUS_OPERATOR:
-                path += "+"
-                path += str(operand)
-                value += operand                
-            elif operator == MINUS_OPERATOR:
-                path += "-"
-                path += str(operand)
-                value -= operand
-            elif operator == MULTI_OPERATOR:
-                path += "*"                
-                path += str(operand)
-                value *= operand
-            elif operator == JOINT_OPERATOR:
-                value = value * 10 + operand
-                path += str(operand)
-
-            if height == (numbers_length - 1):
-                if value == target:
-                    result.append(path)
-            elif height < (numbers_length - 1):
-                next_height = height + 1
-                next_index = numbers[next_height]
-                searchStack.append([next_height, JOINT_OPERATOR, next_index, value, path])
-                searchStack.append([next_height, MULTI_OPERATOR, next_index, value, path])
-                searchStack.append([next_height, MINUS_OPERATOR, next_index, value, path])
-                searchStack.append([next_height, PLUS_OPERATOR, next_index, value, path])
-            
+        for i in range(1, len(num) + 1):
+            if i == 1 or (i > 1 and num[0] != "0"): 
+                self.search(num[i:], num[:i], int(num[:i]), int(num[:i]), result, target)
         return result
 
+    def search(self, numbers_left, current_path, current_value, value_to_be_processed, result, target):
+        if not numbers_left:
+            if current_value == target:
+                result.append(current_path)
+            return
+        for i in range(1, len(numbers_left)+1):
+            value_str = numbers_left[:i]
+            value = int(value_str)
+            if i == 1 or (i > 1 and numbers_left[0] != "0"): 
+                self.search(numbers_left[i:], current_path + "+" + value_str, current_value + value, value, result, target)
+                self.search(numbers_left[i:], current_path + "-" + value_str, current_value - value, -value, result, target)
+                self.search(numbers_left[i:], current_path + "*" + value_str, current_value - value_to_be_processed + value_to_be_processed * value, value_to_be_processed * value, result, target)
+
 solution = Solution()
-print(solution.addOperators("123", 6))
+print(solution.addOperators("0105", 5))
