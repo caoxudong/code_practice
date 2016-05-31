@@ -51,3 +51,14 @@ import sys
 t = int(input().strip())
 for a0 in range(t):
     n = int(input().strip())
+    
+    height = 1
+    i = 1
+    while i <= n:
+        if i & 1 == 1:
+            height <<= 1
+        else:
+            height += 1
+        i += 1
+    print(height)
+        
