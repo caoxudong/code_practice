@@ -43,7 +43,7 @@ The diagram below depicts Lisa's workbook with n = 5 chapters and a maximum of k
 
     +-Chap1+--------+ +-Chap1+---+ +-Chap2+---+ +-Chap3+---+ +-Chap3+--------+
     |               | |          | |          | |          | |               |
-    | Problem1(Red) | | Problem4 | | Problem1 | | Problem1 | | Problem4      |
+    | Problem1(RED) | | Problem4 | | Problem1 | | Problem1 | | Problem4      |
     | Problem2      | |          | | Problem2 | | Problem2 | | Problem5(RED) |
     | Problem3      | |          | |          | | Problem3 | | Problem6      |
     |               | |          | |          | |          | |               |
