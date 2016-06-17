@@ -72,6 +72,10 @@ t_arr = [int(arr_temp) for arr_temp in input().strip().split(' ')]
 
 page_number = 1
 result = 0
+
 for problems_count in t_arr:
     pages_count = (problems_count - 1) // k + 1
     
+
+
+
