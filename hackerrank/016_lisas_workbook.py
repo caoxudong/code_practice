@@ -67,14 +67,24 @@ import sys
 
 
 arr = [int(arr_temp) for arr_temp in input().strip().split(' ')]
-n, k = arr[0], arr[1]
+chapters_count, problems_per_count = arr[0], arr[1]
 t_arr = [int(arr_temp) for arr_temp in input().strip().split(' ')]
 
-page_number = 1
+last_page_number = 0
 result = 0
 
 for problems_count in t_arr:
-    pages_count = (problems_count - 1) // k + 1
+    pages_count = (problems_count + problems_per_count - 1) // problems_per_count
+    i = 1
+    while i <= problems_count:
+        current_page_number = last_page_number + (i + problems_per_count - 1) // problems_per_count
+        if i == current_page_number:
+            result += 1
+        i += 1
+    last_page_number += pages_count
+
+print(result)
+
     
 
 
