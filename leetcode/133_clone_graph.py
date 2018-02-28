@@ -39,10 +39,19 @@ import random
 #     def __init__(self, x):
 #         self.label = x
 #         self.neighbors = []
-
-class Solution(object):
+    
+class Solution:
+    # @param node, a undirected graph node
+    # @return a undirected graph node
+    # @BFS
     def cloneGraph(self, node):
-        """
-        :type node: UndirectedGraphNode
-        :rtype: UndirectedGraphNode
-        """
+        def dfs(input, map):
+            if input in map:
+                return map[input]
+            output = UndirectedGraphNode(input.label)
+            map[input] = output
+            for neighbor in input.neighbors:
+                output.neighbors.append(dfs(neighbor, map))
+            return output
+        if node == None: return None
+        return dfs(node, {})
