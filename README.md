@@ -7,6 +7,7 @@ Some code practice.
 * [ProjectEuler][1]
 * [LeetCode OJ][2]
 * [HanckerRank][3]
+* Others: some problems collected
 
 
 
