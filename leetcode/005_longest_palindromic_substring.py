@@ -27,14 +27,23 @@ class Solution:
         new_s = '#' + '#'.join(s) + '#'
         print(new_s)
         radio_length_array = [1] * len(new_s)
-        max_right_pos = 0
-        pos = 0
-        max_radio_length = 0
+        max_right_pos = 2
+        pos = 2
+        max_radio_length = 1
         print("i\tpos\tmax_radio_length\tmax_right_pos\tradio_length_array[i]")
+        
+        for i in range(2, len(new_s)):
+            j = 1
+            while new_s[i - j] ==new_s[i + j] and i - j >= 0 and i + j < len(new_s):
+                j += 1
+                radio_length_array[i] += 1
+            
+            
+
+
         for i in range(1, len(new_s)):
             if i < max_right_pos:
-                radio_length_array[i] = min(
-                    radio_length_array[2 * pos - 1], max_right_pos - 1)
+                radio_length_array[i] = min(radio_length_array[2 * pos - 1], max_right_pos - 1)
             while i - radio_length_array[i] >= 0 and i + radio_length_array[i] < len(new_s) and new_s[i - radio_length_array[i]] == new_s[i + radio_length_array[i]]:
                 radio_length_array[i] += 1
             if radio_length_array[i] + i > max_right_pos:
