@@ -53,7 +53,7 @@ void skiplist_insert(struct skiplist *list, int key, void *data)
 
 void skiplist_remove(struct skiplist *list, int key)
 {
-
+    
 }
 
 struct skiplist_node *skiplist_get(struct skiplist *list, int key)
