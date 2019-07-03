@@ -6,11 +6,12 @@
 
 static int random_level(int max_level)
 {
-    while (rand() < RAND_MAX / 2 && max_level < max_level)
+    int level = 1;
+    while (rand() < RAND_MAX / 2 && level < max_level)
     {
-        max_level++;
+        level++;
     }
-    return max_level;
+    return level;
 }
 
 static void free_skiplist_node(struct skiplist_node *node)
