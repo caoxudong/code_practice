@@ -1,4 +1,4 @@
-# tow big string-styled numbers, plus, minus, miltiply and divide
+# plus tow big string-styled numbers
 
 
 def plus(num1, num2):
@@ -49,20 +49,6 @@ def plus(num1, num2):
 
     result.reverse()
     return "".join(result)
-
-
-def minus(num1, num2):
-    pass
-
-
-def multi(num1, num2):
-    pass
-
-
-def divide(num1, num2):
-    pass
-
-
 
 num1 = "910111213"
 num2 = "234567891011121314"
