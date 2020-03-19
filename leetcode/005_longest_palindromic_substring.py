@@ -24,35 +24,26 @@ class Solution:
         :type s: str
         :rtype: str
         """
-        new_s = '#' + '#'.join(s) + '#'
-        print(new_s)
-        radio_length_array = [1] * len(new_s)
-        max_right_pos = 2
-        pos = 2
-        max_radio_length = 1
-        print("i\tpos\tmax_radio_length\tmax_right_pos\tradio_length_array[i]")
-        
-        for i in range(2, len(new_s)):
-            j = 1
-            while new_s[i - j] ==new_s[i + j] and i - j >= 0 and i + j < len(new_s):
-                j += 1
-                radio_length_array[i] += 1
-            
-            
+        if s is None or len(s) < 1:
+            return ''
+        start = 0
+        end = 0
+        for i in range(len(s)):
+            len1 = self.expandFromMiddle(s, i, i)
+            len2 = self.expandFromMiddle(s, i, i+1)
+            lens = max(len1, len2)
+            if lens > end - start:
+                start = i - (lens-1)//2
+                end = i + lens//2
+        return s[start:end+1]
 
-
-        for i in range(1, len(new_s)):
-            if i < max_right_pos:
-                radio_length_array[i] = min(radio_length_array[2 * pos - 1], max_right_pos - 1)
-            while i - radio_length_array[i] >= 0 and i + radio_length_array[i] < len(new_s) and new_s[i - radio_length_array[i]] == new_s[i + radio_length_array[i]]:
-                radio_length_array[i] += 1
-            if radio_length_array[i] + i > max_right_pos:
-                max_right_pos = radio_length_array[i] + i - 1
-                pos = i
-            max_radio_length = max(max_radio_length, radio_length_array[i])
-            print(str(i) + "\t" + str(pos) + "\t" + str(max_radio_length) + "\t\t\t" + str(max_right_pos) + "\t\t" + str(radio_length_array[i]))
-        print(new_s[pos - max_radio_length - 1: pos + 1], new_s[pos], new_s[pos + 1: pos + max_radio_length - 1])
-        return (new_s[pos - max_radio_length - 1: pos + 1] + new_s[pos] + new_s[pos + 1: pos + max_radio_length - 1]).replace('#', '')
+    def expandFromMiddle(self, s, left, right):
+        if s is None or left > right:
+            return 0
+        while left >= 0 and right < len(s) and s[left] == s[right]:
+            left -= 1
+            right += 1
+        return right-left - 1
 
 
 if __name__ == "__main__":
