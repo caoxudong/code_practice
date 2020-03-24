@@ -30,4 +30,22 @@ P     I
 
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
-        
+        arrs = [[] for i in range(numRows)]
+        s_len = len(s)
+        i = -1
+        delta = 1
+        for c in s:
+            if i == 0:
+                delta = 1
+                if i == (numRows - 1):
+                    delta = 0
+            elif i == (numRows - 1):
+                delta = -1
+            i += delta
+            arrs[i].append(c)
+        return "".join(["".join(x) for x in arrs])
+
+if __name__ == "__main__":
+    test_str = "ab"
+    solution = Solution()
+    print(solution.convert(test_str, 1))
