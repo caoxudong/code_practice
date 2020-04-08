@@ -45,21 +45,24 @@ p = "mis*is*p*."
 Output: false
 """
 
+
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
         is_in_alter = False
         s_index = 0
         s_len = len(s)
         p_index = 0
-        p_len = len(s)
+        p_len = len(p)
         last_c_p = None
 
-
-        for c_p in p:
+        while p_index < p_len:
+            c_p = p[p_index]
             if s_index == s_len:
                 return False
             if c_p == '.':
                 s_index += 1
+                last_c_p = c_p
+                p_index += 1
             elif c_p == '*':
                 if last_c_p is None:
                     return False
@@ -68,26 +71,38 @@ class Solution:
                         if s[s_index] != last_c_p:
                             break
                         s_index += 1
+                    last_c_p = c_p
+                    p_index += 1
             else:
                 if p[p_index] != s[s_index]:
-                    return False
-            last_c_p = c_p
-            p_index += 1
+                    if p_index + 1 == p_len:
+                        return False
+                    else:
+                        if p[p_index + 1] == '*':
+                            last_c_p = None
+                            p_index += 2
+                        else:
+                            return False
+                else:
+                    last_c_p = c_p
+                    p_index += 1
+                    s_index += 1
 
         if (s_index + 1) < s_len:
             return False
 
         return True
 
+
 if __name__ == "__main__":
     s = Solution()
     tests = [
-        # ["aa", "a", False],
-        # ["aa", "a*", True],
-        # ["ab", ".*", True],
+        ["aa", "a", False],
+        ["aa", "a*", True],
+        ["ab", ".*", True],
         ["aab", "c*a*b", True],
         ["mississippi", "mis*is*p*.", False]
     ]
     for t in tests:
-        print("(" + t[0] + "," + t[1] + ")\t->\t" + str(t[2]))
-        assert(s.isMatch(t[0], t[1]) == t[2])
+        print("(" + t[0] + "," + t[1] + ") -> " +
+              str(t[2]) + " -> " + str(s.isMatch(t[0], t[1])))
