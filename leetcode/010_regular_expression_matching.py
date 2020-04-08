@@ -47,14 +47,44 @@ Output: false
 
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
-        return False
+        is_in_alter = False
+        s_index = 0
+        s_len = len(s)
+        p_index = 0
+        p_len = len(s)
+        last_c_p = None
+
+
+        for c_p in p:
+            if s_index == s_len:
+                return False
+            if c_p == '.':
+                s_index += 1
+            elif c_p == '*':
+                if last_c_p is None:
+                    return False
+                else:
+                    while s_index < s_len:
+                        if s[s_index] != last_c_p:
+                            break
+                        s_index += 1
+            else:
+                if p[p_index] != s[s_index]:
+                    return False
+            last_c_p = c_p
+            p_index += 1
+
+        if (s_index + 1) < s_len:
+            return False
+
+        return True
 
 if __name__ == "__main__":
     s = Solution()
     tests = [
-        ["aa", "a", False],
-        ["aa", "a*", True],
-        ["ab", ".*", True],
+        # ["aa", "a", False],
+        # ["aa", "a*", True],
+        # ["ab", ".*", True],
         ["aab", "c*a*b", True],
         ["mississippi", "mis*is*p*.", False]
     ]
