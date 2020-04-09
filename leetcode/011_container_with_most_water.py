@@ -9,5 +9,18 @@ Output: 49
 """
 
 class Solution:
-    def maxArea(self, height: List[int]) -> int:
-        pass
+    def maxArea(self, heights: List[int]) -> int:
+        max_area = 0
+        left = 0 
+        right = len(heights) - 1
+
+        while left != right:
+            if heights[left] >= heights[right]:
+                temp_max_area = heights[right] * (right - left)
+                right -= 1
+            else:
+                temp_max_area = heights[left] * (right - left)
+                left += 1
+            if temp_max_area > max_area:
+                max_area = temp_max_area
+        return max_area
