@@ -43,6 +43,53 @@ Output: 1994
 Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 """
 
+
 class Solution:
     def romanToInt(self, s: str) -> int:
-        pass
+        roman_numerals = {
+            'I': (1, ('V', 'X')),
+            'V': (5, None),
+            'X': (10, ('L', 'C')),
+            'L': (50, None),
+            'C': (100, ('D', 'M')),
+            'D': (500, None),
+            'M': (1000, None)
+        }
+        result_nums = []
+        prefix_nums = []
+        s_len = len(s)
+        for s_index in range(s_len):
+            c = s[s_index]
+            temp_tuple = roman_numerals[c]
+            temp_number = temp_tuple[0]
+            if temp_tuple[1] is None:
+                result_nums.append(temp_number)
+            else:
+                if s_index + 1 == s_len:
+                    result_nums.append(temp_number)
+                elif s[s_index + 1] == temp_tuple[1][0] or s[s_index + 1] == temp_tuple[1][1]:
+                    result_nums.append(-1 * temp_number)
+                else:
+                    result_nums.append(temp_number)
+            s_index += 1
+        
+        result = 0
+        for num in result_nums:
+            result += num
+        
+        return result
+
+if __name__ == "__main__":
+    test_params = [
+        ('III', 3),
+        ('IV', 4),
+        ('IX', 9),
+        ('LVIII', 58),
+        ('MCMXCIV', 1994)
+    ]
+
+    s = Solution()
+    for t in test_params:
+        number = s.romanToInt(t[0])
+        print(t[0] + "\t" + str(t[1]) + " -> " + str(number))
+        assert t[1] == number
