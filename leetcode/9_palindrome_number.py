@@ -1,4 +1,6 @@
 """
+https://leetcode.com/problems/palindrome-number/description/
+
 Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
 
 Example 1:
@@ -16,6 +18,7 @@ Output: false
 Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
 """
 
+
 class Solution:
     def isPalindrome(self, x: int) -> bool:
         s = str(x)
@@ -25,6 +28,7 @@ class Solution:
             if s[i] != s[s_len - i - 1]:
                 return False
         return True
+
 
 if __name__ == "__main__":
     s = Solution()

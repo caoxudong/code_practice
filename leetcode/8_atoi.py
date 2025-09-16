@@ -1,4 +1,6 @@
 """
+https://leetcode.com/problems/string-to-integer-atoi/description/
+
 Implement atoi which converts a string to an integer.
 
 The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value.
@@ -39,6 +41,7 @@ Output: -2147483648
 Explanation: The number "-91283472332" is out of the range of a 32-bit signed integer. Thefore INT_MIN (−231) is returned.
 """
 
+
 class Solution:
     def myAtoi(self, s):
         all_signs = "+-"
@@ -46,7 +49,7 @@ class Solution:
         valid_chars = all_signs + all_numbers
         min_abs = 2 << 30
         min_abs_str = str(min_abs)
-        max_abs = min_abs -1 
+        max_abs = min_abs - 1
         max_abs_str = str(max_abs)
 
         s = s.strip(" ")
@@ -75,7 +78,7 @@ class Solution:
         s = s.strip(" ")
         if len(s) == 0:
             return 0
-        
+
         result = 0
         index = 0
         len_s = len(s)
@@ -90,7 +93,6 @@ class Solution:
             if result > max_abs:
                 result = max_abs
         return result
-
 
 
 if __name__ == "__main__":
@@ -109,4 +111,3 @@ if __name__ == "__main__":
     print(s.myAtoi(a))
     a = "123312312312312334123"
     print(s.myAtoi(a))
-

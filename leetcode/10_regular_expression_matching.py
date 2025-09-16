@@ -1,14 +1,11 @@
 """
+problem url, https://leetcode.com/problems/regular-expression-matching/description/
+
 Given an input string (s) and a pattern (p), implement regular expression matching with support for '.' and '*'.
 
 '.' Matches any single character.
 '*' Matches zero or more of the preceding element.
 The matching should cover the entire input string (not partial).
-
-Note:
-
-s could be empty and contains only lowercase letters a-z.
-p could be empty and contains only lowercase letters a-z, and characters like . or *.
 
 Example 1:
 Input:
@@ -47,51 +44,24 @@ Output: false
 
 
 class Solution:
-    def isMatch(self, s: str, p: str) -> bool:
-        is_in_alter = False
-        s_index = 0
-        s_len = len(s)
-        p_index = 0
-        p_len = len(p)
-        last_c_p = None
+    def isMatch(self, text: str, pattern: str) -> bool:
+        memo = {}
 
-        while p_index < p_len:
-            c_p = p[p_index]
-            if s_index == s_len:
-                return False
-            if c_p == '.':
-                s_index += 1
-                last_c_p = c_p
-                p_index += 1
-            elif c_p == '*':
-                if last_c_p is None:
-                    return False
+        def dp(i: int, j: int) -> bool:
+            if (i, j) not in memo:
+                if j == len(pattern):
+                    ans = i == len(text)
                 else:
-                    while s_index < s_len:
-                        if s[s_index] != last_c_p:
-                            break
-                        s_index += 1
-                    last_c_p = c_p
-                    p_index += 1
-            else:
-                if p[p_index] != s[s_index]:
-                    if p_index + 1 == p_len:
-                        return False
+                    first_match = i < len(text) and pattern[j] in {text[i], "."}
+                    if j + 1 < len(pattern) and pattern[j + 1] == "*":
+                        ans = dp(i, j + 2) or first_match and dp(i + 1, j)
                     else:
-                        if p[p_index + 1] == '*':
-                            last_c_p = None
-                            p_index += 2
-                        else:
-                            return False
-                else:
-                    last_c_p = c_p
-                    p_index += 1
-                    s_index += 1
+                        ans = first_match and dp(i + 1, j + 1)
 
-        if (s_index + 1) < s_len:
-            return False
+                memo[i, j] = ans
+            return memo[i, j]
 
-        return True
+        return dp(0, 0)
 
 
 if __name__ == "__main__":
@@ -101,8 +71,16 @@ if __name__ == "__main__":
         ["aa", "a*", True],
         ["ab", ".*", True],
         ["aab", "c*a*b", True],
-        ["mississippi", "mis*is*p*.", False]
+        ["mississippi", "mis*is*p*.", False],
     ]
     for t in tests:
-        print("(" + t[0] + "," + t[1] + ") -> " +
-              str(t[2]) + " -> " + str(s.isMatch(t[0], t[1])))
+        print(
+            "("
+            + t[0]
+            + ","
+            + t[1]
+            + ") -> "
+            + str(t[2])
+            + " -> "
+            + str(s.isMatch(t[0], t[1]))
+        )

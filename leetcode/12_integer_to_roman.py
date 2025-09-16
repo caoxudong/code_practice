@@ -1,4 +1,6 @@
 """
+https://leetcode.com/problems/integer-to-roman/
+
 Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
 
 Symbol       Value
@@ -14,8 +16,8 @@ For example, two is written as II in Roman numeral, just two one's added togethe
 
 Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not IIII. Instead, the number four is written as IV. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:
 
-I can be placed before V (5) and X (10) to make 4 and 9. 
-X can be placed before L (50) and C (100) to make 40 and 90. 
+I can be placed before V (5) and X (10) to make 4 and 9.
+X can be placed before L (50) and C (100) to make 40 and 90.
 C can be placed before D (500) and M (1000) to make 400 and 900.
 
 Given an integer, convert it to a roman numeral. Input is guaranteed to be within the range from 1 to 3999.
@@ -47,13 +49,10 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 class Solution:
     def intToRoman(self, num: int) -> str:
         roman_numerals = [
-            (1000, 'M', None),
-            (100,  'C', {9: 'CM', 8: 'DCCC',
-                         7: 'DCC', 6: 'DC', 5: 'D', 4: 'CD'}),
-            (10,   'X', {9: 'XC', 8: 'LXXX',
-                         7: 'LXX', 6: 'LX', 5: 'L', 4: 'XL'}),
-            (1,    'I', {9: 'IX', 8: 'VIII',
-                         7: 'VII', 6: 'VI', 5: 'V', 4: 'IV'})
+            (1000, "M", None),
+            (100, "C", {9: "CM", 8: "DCCC", 7: "DCC", 6: "DC", 5: "D", 4: "CD"}),
+            (10, "X", {9: "XC", 8: "LXXX", 7: "LXX", 6: "LX", 5: "L", 4: "XL"}),
+            (1, "I", {9: "IX", 8: "VIII", 7: "VII", 6: "VI", 5: "V", 4: "IV"}),
         ]
         roman_numerals_len = len(roman_numerals)
 
@@ -67,14 +66,17 @@ class Solution:
             if quotient > 0:
                 if roman_numerals[roman_numerals_index][2] is None:
                     result_numerals.append(
-                        roman_numerals[roman_numerals_index][1] * quotient)
+                        roman_numerals[roman_numerals_index][1] * quotient
+                    )
                 else:
                     if roman_numerals[roman_numerals_index][2].get(quotient) is None:
                         result_numerals.append(
-                            roman_numerals[roman_numerals_index][1] * quotient)
+                            roman_numerals[roman_numerals_index][1] * quotient
+                        )
                     else:
                         result_numerals.append(
-                            roman_numerals[roman_numerals_index][2][quotient])
+                            roman_numerals[roman_numerals_index][2][quotient]
+                        )
             remainder = remainder % roman_numerals[roman_numerals_index][0]
             roman_numerals_index += 1
 
@@ -89,7 +91,7 @@ if __name__ == "__main__":
         (9, "IX"),
         (58, "LVIII"),
         (1994, "MCMXCIV"),
-        (60, "LX")
+        (60, "LX"),
     ]
     s = Solution()
     for test in test_params:
