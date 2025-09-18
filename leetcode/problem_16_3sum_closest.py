@@ -26,7 +26,29 @@ Constraints:
 * -10^4 <= target <= 10^4
 """
 
+from typing import List
+
 
 class Solution:
     def threeSumClosest(self, nums: List[int], target: int) -> int:
-        pass
+        list.sort(nums)
+        result = float("inf")
+
+        for i in range(len(nums) - 2):
+            left = i + 1
+            right = len(nums) - 1
+
+            while left < right:
+                cur_sum = nums[i] + nums[left] + nums[right]
+
+                if abs(cur_sum - target) < abs(result - target):
+                    result = cur_sum
+
+                if cur_sum > target:
+                    right = right - 1
+                elif cur_sum < target:
+                    left = left + 1
+                else:
+                    return cur_sum
+
+        return result
