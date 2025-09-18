@@ -42,11 +42,17 @@ class Solution:
                     sum_left_right_value = nums[left] + nums[right]
                     if rest_value == sum_left_right_value:
                         retval.append([nums[i], nums[j], nums[left], nums[right]])
+                        while left + 1 < len_nums and nums[left] == nums[left + 1]:
+                            left = left + 1
                         left = left + 1
                     elif rest_value > sum_left_right_value:
                         left = left + 1
                     else:
                         right = right - 1
+                while j + 1 < len_nums and nums[j] == nums[j + 1]:
+                    j = j + 1
+            while i + 1 < len_nums and nums[i] == nums[i + 1]:
+                i = i + 1
 
         def sort_list(result: list[list[int]]) -> list[list[int]]:
             retval = []
