@@ -18,13 +18,9 @@ Code that prints the sum calculated and returned by solveMeFirst is provided for
 
 */
 
-import java.io.*;
 import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
 
-public class Solution {
+public class Problem_001_SolveMeFirst {
 
     static int solveMeFirst(int a, int b) {
         return a + b;
@@ -40,5 +36,6 @@ public class Solution {
         int sum;
         sum = solveMeFirst(a, b);
         System.out.println(sum);
+        in.close();
    }
 }

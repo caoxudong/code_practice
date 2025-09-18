@@ -29,9 +29,8 @@ We print the sum of the array's elements, which is: 1 + 2 + 3 + 4 + 10 + 11 = 31
  */
 
 import java.io.*;
-import java.util.*;
 
-public class Solution {
+public class Problem_002_SimpleArraySum {
 
     public static void main(String[] args) throws Exception {
         BufferedReader bufferedReader = 
