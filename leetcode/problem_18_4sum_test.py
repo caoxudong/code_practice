@@ -1,6 +1,5 @@
 import unittest
 import problem_18_4sum as problem
-from functools import cmp_to_key
 
 
 class TestSolution(unittest.TestCase):
