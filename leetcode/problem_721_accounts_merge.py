@@ -30,7 +30,59 @@ Constraints:
 * accounts[i][j] (for j > 0) is a valid email.
 """
 
+import email
+from lib2to3.fixes.fix_metaclass import remove_trailing_newline
+from turtle import right
+from venv import create
+
 
 class Solution:
     def accountsMerge(self, accounts: list[list[str]]) -> list[list[str]]:
-        return []
+        emails_graph: dict[str, list[str]] = {}
+        email_name_dict: dict[str, str] = {}
+
+        for tmp_account in accounts:
+            tmp_name = tmp_account[0]
+            tmp_emails = tmp_account[1:]
+            tmp_email_core = tmp_emails[0]
+            email_name_dict[tmp_email_core] = tmp_name
+            if len(tmp_emails) == 1:
+                emails_graph[tmp_email_core] = []
+
+            for i in range(1, len(tmp_emails)):
+                if tmp_email_core not in emails_graph:
+                    emails_graph[tmp_email_core] = []
+                if tmp_emails[i] not in emails_graph:
+                    emails_graph[tmp_emails[i]] = []
+                emails_graph[tmp_email_core].append(tmp_emails[i])
+                emails_graph[tmp_emails[i]].append(tmp_email_core)
+                email_name_dict[tmp_emails[i]] = tmp_name
+
+        # dsf
+        visited_emails: set[str] = set()
+        retval: list[list[str]] = []
+        for tmp_email in emails_graph:
+            if tmp_email in visited_emails:
+                continue
+
+            stack = emails_graph[tmp_email]
+            visited_emails.add(tmp_email)
+            tmp_emails_link = [tmp_email]
+            retval.append(tmp_emails_link)
+            while len(stack) != 0:
+                tmp_email_sub = stack.pop()
+                if tmp_email_sub in visited_emails:
+                    continue
+
+                tmp_emails_link.append(tmp_email_sub)
+                visited_emails.add(tmp_email_sub)
+                tmp_email_sub_subs = emails_graph[tmp_email_sub]
+                for tmp_email_sub_sub in tmp_email_sub_subs:
+                    stack.append(tmp_email_sub_sub)
+
+        for tmp_account in retval:
+            tmp_name = email_name_dict[tmp_account[0]]
+            tmp_account.sort()
+            tmp_account.insert(0, tmp_name)
+
+        return retval
