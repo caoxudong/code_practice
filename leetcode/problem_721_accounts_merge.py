@@ -30,11 +30,6 @@ Constraints:
 * accounts[i][j] (for j > 0) is a valid email.
 """
 
-import email
-from lib2to3.fixes.fix_metaclass import remove_trailing_newline
-from turtle import right
-from venv import create
-
 
 class Solution:
     def accountsMerge(self, accounts: list[list[str]]) -> list[list[str]]:

@@ -35,9 +35,6 @@ Constraints:
 * digits[i] is a digit in the range ['2', '9'].
 """
 
-from operator import le
-from xml.dom import minidom
-
 
 class Solution:
     def letterCombinations(self, digits: str) -> list[str]:

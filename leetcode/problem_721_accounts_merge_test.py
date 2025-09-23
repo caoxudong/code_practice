@@ -1,5 +1,5 @@
 import unittest
-import problem_721_accounts_merge as problem
+import leetcode.problem_721_accounts_merge as problem
 
 
 class UnitTestData:

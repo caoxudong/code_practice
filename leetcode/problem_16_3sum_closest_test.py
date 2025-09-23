@@ -1,5 +1,5 @@
 import unittest
-import problem_16_3sum_closest
+import leetcode.problem_16_3sum_closest as problem_16_3sum_closest
 
 
 class TestSolution(unittest.TestCase):

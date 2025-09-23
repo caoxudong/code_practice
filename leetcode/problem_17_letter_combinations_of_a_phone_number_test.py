@@ -36,7 +36,7 @@ Constraints:
 """
 
 import unittest
-import problem_17_letter_combinations_of_a_phone_number as problem
+import leetcode.problem_17_letter_combinations_of_a_phone_number as problem
 
 
 class TestSolution(unittest.TestCase):
