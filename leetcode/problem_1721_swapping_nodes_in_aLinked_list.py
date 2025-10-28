@@ -28,7 +28,37 @@ class ListNode:
         self.val = val
         self.next = next
 
+    def to_string(self) -> str:
+        list_values: list[int] = []
+
+        node = self
+        while True:
+            list_values.append(node.val)
+            node = node.next
+            if node == None:
+                break
+
+        return "[{}]".format(",".join(map(str, list_values)))
+
 
 class Solution:
     def swapNodes(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
-        return None
+        fake_head = ListNode(next=head)
+
+        jth_node: ListNode = fake_head
+        kth_node: ListNode = jth_node.next
+        for _ in range(k - 1):
+            jth_node = jth_node.next
+            kth_node = kth_node.next
+
+        lth_r_node: ListNode = fake_head
+        tmp_node: ListNode = kth_node
+        while tmp_node.next != None:
+            tmp_node = tmp_node.next
+            lth_r_node = lth_r_node.next
+        kth_r_node = lth_r_node.next
+
+        jth_node.next, lth_r_node.next = kth_r_node, kth_node
+        kth_node.next, kth_r_node.next = kth_r_node.next, kth_node.next
+
+        return fake_head.next

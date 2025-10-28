@@ -1,4 +1,5 @@
 from typing import Optional
+from venv import create
 import leetcode.problem_1721_swapping_nodes_in_aLinked_list as problem
 import unittest
 
@@ -7,11 +8,11 @@ class UnitTestData:
     def __init__(
         self,
         head: problem.ListNode = None,
-        n: int = 0,
+        k: int = 0,
         expected: Optional[problem.ListNode] = None,
     ):
         self.head = head
-        self.n = n
+        self.k = k
         self.expected = expected
 
 
@@ -27,14 +28,15 @@ def create_ListNode(nums: list[int] = []) -> problem.ListNode:
 unittest_data = [
     UnitTestData(
         head=create_ListNode([1, 2, 3, 4, 5]),
-        n=2,
+        k=2,
         expected=create_ListNode([1, 4, 3, 2, 5]),
     ),
     UnitTestData(
         head=create_ListNode([7, 9, 6, 6, 7, 8, 3, 0, 9, 5]),
-        n=5,
+        k=5,
         expected=create_ListNode([7, 9, 6, 6, 8, 7, 3, 0, 9, 5]),
     ),
+    UnitTestData(head=create_ListNode([1, 2]), k=1, expected=create_ListNode([2, 1])),
 ]
 
 
@@ -83,5 +85,5 @@ class TestSolution(unittest.TestCase):
     def test_swapNodes(self):
         s = problem.Solution()
         for item in unittest_data:
-            result = s.swapNodes(item.head, item.n)
+            result = s.swapNodes(item.head, item.k)
             assertListNodeEqual(result, item.expected)
