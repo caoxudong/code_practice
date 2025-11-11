@@ -29,4 +29,36 @@ from common_data_structure.list_node import ListNode
 
 class Solution:
     def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
-        return None
+        if head == None:
+            return None
+
+        values = []
+        p_cur = head
+        while p_cur != None:
+            values.append(p_cur.val)
+            p_cur = p_cur.next
+
+        i = 0
+        values_count = len(values)
+        while True:
+            if i + k > values_count:
+                break
+
+            for j in range(int(k / 2)):
+                values[i + j], values[i + k - 1 - j] = (
+                    values[i + k - 1 - j],
+                    values[i + j],
+                )
+
+            i += k
+
+        def create_ListNode(nums: list[int] = []) -> ListNode:
+            last_listnode = None
+            while len(nums) > 0:
+                tmp_val = nums.pop()
+                tmp_listnode = ListNode(tmp_val, last_listnode)
+                last_listnode = tmp_listnode
+            return last_listnode
+
+        retval = create_ListNode(values)
+        return retval
