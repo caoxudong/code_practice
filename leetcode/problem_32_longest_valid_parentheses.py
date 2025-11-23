@@ -28,4 +28,33 @@ Constraints:
 
 class Solution:
     def longestValidParentheses(self, s: str) -> int:
-        return 0
+        stack: list[int] = []
+        len_s = len(s)
+        left_parenthese = "("
+        right_parenthese = ")"
+
+        for i in range(len_s):
+            if s[i] == left_parenthese:
+                stack.append(i)
+            elif s[i] == right_parenthese:
+                if len(stack) == 0:
+                    stack.append(i)
+                    continue
+                if s[stack[-1]] == left_parenthese:
+                    stack.pop()
+                else:
+                    stack.append(i)
+            else:
+                # illegal character
+                return 0
+
+        if len(stack) == 0:
+            return len_s
+
+        len_max = 0
+        last_index = -1
+        for index in stack:
+            len_max = max(len_max, index - last_index - 1)
+            last_index = index
+        len_max = max(len_max, len_s - 1 - last_index)
+        return len_max

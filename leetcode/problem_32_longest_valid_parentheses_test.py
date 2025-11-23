@@ -11,7 +11,10 @@ class UnitTestData:
 unittest_data = [
     UnitTestData(s="", expected=0),
     UnitTestData(s="(()", expected=2),
+    UnitTestData(s="())", expected=2),
     UnitTestData(s=")()())", expected=4),
+    UnitTestData(s="(((((((()()()()())))))))", expected=24),
+    UnitTestData(s=")))())()((())", expected=4),
 ]
 
 
