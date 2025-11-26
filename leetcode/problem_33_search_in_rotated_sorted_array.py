@@ -37,18 +37,22 @@ class Solution:
     def search(self, nums: list[int], target: int) -> int:
         len_nums = len(nums)
         left = 0
-        right = len_nums
-        index = (left + right) / 2
-        while True:
+        right = len_nums - 1
+        while left <= right:
+            index = int((left + right) / 2)
+
             if nums[index] == target:
                 return index
-            elif nums[index] > target:
-                right = index
-                if right == left:
-                    # 404
-                    return -1
+
+            if nums[index] >= nums[left]:
+                if nums[left] <= target and nums[index] > target:
+                    right = index - 1
                 else:
-                    continue
+                    left = index + 1
             else:
-                
-        return 0
+                if nums[index] < target and nums[right] >= target:
+                    left = index + 1
+                else:
+                    right = index - 1
+
+        return -1
