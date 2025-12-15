@@ -51,7 +51,7 @@ class Solution:
     def isValidSudoku(self, board: list[list[str]]) -> bool:
         v_numbers_sets: dict[int, list[int]] = {}
         h_numbers_sets: dict[int, list[int]] = {}
-        sub_sodoku_numbers_sets: dict[str, list[int]] = {}
+        sub_sudoku_numbers_sets: dict[str, list[int]] = {}
 
         for i in range(9):
             for j in range(9):
@@ -68,11 +68,11 @@ class Solution:
                     if c in h_numbers_sets[j]:
                         return False
                     sub_sudoku_index = "%s_%s" % (int(i / 3), int(j / 3))
-                    if sub_sodoku_numbers_sets.get(sub_sudoku_index) is None:
-                        sub_sodoku_numbers_sets[sub_sudoku_index] = []
-                    if c in sub_sodoku_numbers_sets[sub_sudoku_index]:
+                    if sub_sudoku_numbers_sets.get(sub_sudoku_index) is None:
+                        sub_sudoku_numbers_sets[sub_sudoku_index] = []
+                    if c in sub_sudoku_numbers_sets[sub_sudoku_index]:
                         return False
                     v_numbers_sets[i].append(c)
                     h_numbers_sets[j].append(c)
-                    sub_sodoku_numbers_sets[sub_sudoku_index].append(c)
+                    sub_sudoku_numbers_sets[sub_sudoku_index].append(c)
         return True
