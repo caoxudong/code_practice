@@ -3,7 +3,7 @@ import leetcode.problem_36_valid_sudoku as problem
 
 
 class UnitTestData:
-    def __init__(self, board: list[list[str]] = [], expected: list[int] = []) -> bool:
+    def __init__(self, board: list[list[str]] = [], expected: bool = False) -> bool:
         self.board = board
         self.expected = expected
 
