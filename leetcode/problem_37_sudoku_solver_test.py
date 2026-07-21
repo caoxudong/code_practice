@@ -45,7 +45,6 @@ class TestSolution(unittest.TestCase):
                 6: [],
                 7: [],
                 8: [],
-                9: [],
             }
             h_numbers_sets: dict[int, list[str]] = {
                 0: [],
@@ -57,7 +56,6 @@ class TestSolution(unittest.TestCase):
                 6: [],
                 7: [],
                 8: [],
-                9: [],
             }
             sub_sudoku_numbers_sets: dict[str, list[str]] = {
                 0: [],
@@ -69,7 +67,6 @@ class TestSolution(unittest.TestCase):
                 6: [],
                 7: [],
                 8: [],
-                9: [],
             }
             for i in range(9):
                 for j in range(9):
