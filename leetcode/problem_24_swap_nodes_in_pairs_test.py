@@ -4,15 +4,11 @@ import leetcode.problem_24_swap_nodes_in_pairs as problem
 import test_utils
 import test_utils.class_utils
 
-test_utils.class_utils.add_linked_list_to_string_method_to_class_object(
-    problem.ListNode
-)
+test_utils.class_utils.add_linked_list_to_string_method_to_class_object(problem.ListNode)
 
 
 class UnitTestData:
-    def __init__(
-        self, head: problem.ListNode = None, expected: problem.ListNode = None
-    ):
+    def __init__(self, head: problem.ListNode = None, expected: problem.ListNode = None):
         self.head = head
         self.expected = expected
 
@@ -53,24 +49,16 @@ def assertListNodeEqual(
     if result == None and expected == None:
         return
     if result == None and expected != None:
-        raise AssertionError(
-            "AssertionError, result is None, expected is {}".format(
-                expected.to_string()
-            )
-        )
+        raise AssertionError("AssertionError, result is None, expected is {}".format(expected.to_string()))
     if result != None and expected == None:
-        raise AssertionError(
-            "AssertionError, result is {}, expected is None".format(result.to_string())
-        )
+        raise AssertionError("AssertionError, result is {}, expected is None".format(result.to_string()))
 
     result_tmp_node = result
     expected_tmp_node = expected
     while True:
         if result_tmp_node.val != expected_tmp_node.val:
             raise AssertionError(
-                "AssertionError, result is {}, expected is {}".format(
-                    result.to_string(), expected.to_string()
-                )
+                "AssertionError, result is {}, expected is {}".format(result.to_string(), expected.to_string())
             )
 
         result_tmp_node = result_tmp_node.next
@@ -81,14 +69,12 @@ def assertListNodeEqual(
             continue
         else:
             raise AssertionError(
-                "AssertionError, result is {}, expected is {}".format(
-                    result.to_string(), expected.to_string()
-                )
+                "AssertionError, result is {}, expected is {}".format(result.to_string(), expected.to_string())
             )
 
 
 class TestSolution(unittest.TestCase):
-    def test_swapPairs(self):
+    def test_leetcode_24_swapPairs(self):
         s = problem.Solution()
         for item in unittest_data:
             result = s.swapPairs(item.head)

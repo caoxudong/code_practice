@@ -19,7 +19,7 @@ unittest_data = [
 
 
 class TestSolution(unittest.TestCase):
-    def test_longestValidParentheses(self):
+    def test_leetcode_32_longestValidParentheses(self):
         s = problem.Solution()
         for item in unittest_data:
             result = s.longestValidParentheses(item.s)

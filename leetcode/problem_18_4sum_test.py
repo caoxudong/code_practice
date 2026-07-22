@@ -3,7 +3,7 @@ import leetcode.problem_18_4sum as problem
 
 
 class TestSolution(unittest.TestCase):
-    def test_fourSum(self):
+    def test_leetcode_18_fourSum(self):
         s = problem.Solution()
 
         class UnitTestData:

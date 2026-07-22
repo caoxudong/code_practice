@@ -16,9 +16,7 @@ unittest_data = [
         words=["word", "good", "best", "word"],
         expected=[],
     ),
-    UnitTestData(
-        s="barfoofoobarthefoobarman", words=["bar", "foo", "the"], expected=[6, 9, 12]
-    ),
+    UnitTestData(s="barfoofoobarthefoobarman", words=["bar", "foo", "the"], expected=[6, 9, 12]),
     UnitTestData(s="foobarfoobar", words=["foo", "bar"], expected=[0, 3, 6]),
     UnitTestData(
         s="fffffffffffffffffffffffffffffffff",
@@ -50,7 +48,7 @@ unittest_data = [
 
 
 class TestSolution(unittest.TestCase):
-    def test_findSubstring(self):
+    def test_leetcode_30_findSubstring(self):
         s = problem.Solution()
         for item in unittest_data:
             result = s.findSubstring(item.s, item.words)

@@ -3,9 +3,7 @@ import leetcode.problem_37_sudoku_solver as problem
 
 
 class UnitTestData:
-    def __init__(
-        self, board: list[list[str]] = [], expected: list[list[int]] = []
-    ) -> bool:
+    def __init__(self, board: list[list[str]] = [], expected: list[list[int]] = []) -> bool:
         self.board = board
         self.expected = expected
 
@@ -13,25 +11,23 @@ class UnitTestData:
 unittest_data = [
     UnitTestData(
         board=[
-            [".",".",".",".",".",".",".",".","."],
-            [".","9",".",".","1",".",".","3","."],
-            [".",".","6",".","2",".","7",".","."],
-            [".",".",".","3",".","4",".",".","."],
-            ["2","1",".",".",".",".",".","9","8"],
-            [".",".",".",".",".",".",".",".","."],
-            [".",".","2","5",".","6","4",".","."],
-            [".","8",".",".",".",".",".","1","."],
-            [".",".",".",".",".",".",".",".","."]
+            [".", ".", ".", ".", ".", ".", ".", ".", "."],
+            [".", "9", ".", ".", "1", ".", ".", "3", "."],
+            [".", ".", "6", ".", "2", ".", "7", ".", "."],
+            [".", ".", ".", "3", ".", "4", ".", ".", "."],
+            ["2", "1", ".", ".", ".", ".", ".", "9", "8"],
+            [".", ".", ".", ".", ".", ".", ".", ".", "."],
+            [".", ".", "2", "5", ".", "6", "4", ".", "."],
+            [".", "8", ".", ".", ".", ".", ".", "1", "."],
+            [".", ".", ".", ".", ".", ".", ".", ".", "."],
         ],
-        expected=[
-            
-        ],
+        expected=[],
     ),
 ]
 
 
 class TestSolution(unittest.TestCase):
-    def test_solveSudoku(self):
+    def test_leetcode_37_solveSudoku(self):
         s = problem.Solution()
         for item in unittest_data:
             s.solveSudoku(item.board)
@@ -77,7 +73,7 @@ class TestSolution(unittest.TestCase):
                     if c in h_numbers_sets[j]:
                         raise Exception("wrong answer")
                     h_numbers_sets[j].append(c)
-                    key = "%s_%s"%(int(i/3), int(j/3))
+                    key = "%s_%s" % (int(i / 3), int(j / 3))
                     if sub_sudoku_numbers_sets.get(key) != None and c in list(sub_sudoku_numbers_sets.get(key)):
                         raise Exception("wrong answer")
                     sub_sudoku_numbers_sets[key] = c

@@ -32,16 +32,12 @@ unittest_data = [
 ]
 
 
-def assertNumsEqualWithoutOrder(
-    result: list[int] = [], expected_cnt: int = 0, expected_nums: list[int] = []
-):
+def assertNumsEqualWithoutOrder(result: list[int] = [], expected_cnt: int = 0, expected_nums: list[int] = []):
     len_result = len(result)
     len_expected = len(expected_nums)
 
     if len_expected != len_result:
-        raise AssertionError(
-            "AssertionError, result is {}, expected is {}".format(result, expected_nums)
-        )
+        raise AssertionError("AssertionError, result is {}, expected is {}".format(result, expected_nums))
 
     result_set: set = set()
     expected_set: set = set()
@@ -51,17 +47,13 @@ def assertNumsEqualWithoutOrder(
         expected_set.add(expected_nums[i])
 
     if result_set != expected_set:
-        raise AssertionError(
-            "AssertionError, result is {}, expected is {}".format(result, expected_nums)
-        )
+        raise AssertionError("AssertionError, result is {}, expected is {}".format(result, expected_nums))
 
 
 class TestSolution(unittest.TestCase):
-    def test_removeElement(self):
+    def test_leetcode_27_removeElement(self):
         s = problem.Solution()
         for item in unittest_data:
             result = s.removeElement(item.nums, item.val)
             self.assertEqual(result, item.expected_cnt)
-            assertNumsEqualWithoutOrder(
-                item.nums, item.expected_cnt, item.expected_nums
-            )
+            assertNumsEqualWithoutOrder(item.nums, item.expected_cnt, item.expected_nums)

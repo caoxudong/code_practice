@@ -3,9 +3,7 @@ import leetcode.problem_34_find_first_and_last_position_of_element_in_sorted_arr
 
 
 class UnitTestData:
-    def __init__(
-        self, nums: list[int] = [], target: int = 0, expected: list[int] = []
-    ) -> list[int]:
+    def __init__(self, nums: list[int] = [], target: int = 0, expected: list[int] = []) -> list[int]:
         self.nums = nums
         self.target = target
         self.expected = expected
@@ -19,7 +17,7 @@ unittest_data = [
 
 
 class TestSolution(unittest.TestCase):
-    def test_searchRange(self):
+    def test_leetcode_34_searchRange(self):
         s = problem.Solution()
         for item in unittest_data:
             result = s.searchRange(item.nums, item.target)

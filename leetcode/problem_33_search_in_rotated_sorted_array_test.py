@@ -19,7 +19,7 @@ unittest_data = [
 
 
 class TestSolution(unittest.TestCase):
-    def test_search(self):
+    def test_leetcode_33_search(self):
         s = problem.Solution()
         for item in unittest_data:
             result = s.search(item.nums, item.target)

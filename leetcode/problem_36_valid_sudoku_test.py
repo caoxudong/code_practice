@@ -41,7 +41,7 @@ unittest_data = [
 
 
 class TestSolution(unittest.TestCase):
-    def test_isValidSudoku(self):
+    def test_leetcode_36_isValidSudoku(self):
         s = problem.Solution()
         for item in unittest_data:
             result = s.isValidSudoku(item.board)

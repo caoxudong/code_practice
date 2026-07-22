@@ -41,7 +41,7 @@ unittest_data = [
 
 
 class TestSolution(unittest.TestCase):
-    def test_reverseKGroup(self):
+    def test_leetcode_25_reverseKGroup(self):
         s = problem.Solution()
         for item in unittest_data:
             result = s.reverseKGroup(item.head, item.k)

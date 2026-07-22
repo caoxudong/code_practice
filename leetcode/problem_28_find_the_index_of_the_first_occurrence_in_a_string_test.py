@@ -19,7 +19,7 @@ unittest_data = [
 
 
 class TestSolution(unittest.TestCase):
-    def test_strStr(self):
+    def test_leetcode_28_strStr(self):
         s = problem.Solution()
         for item in unittest_data:
             result = s.strStr(item.haystack, item.needle)

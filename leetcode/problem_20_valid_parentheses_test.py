@@ -18,7 +18,7 @@ unittest_data = [
 
 
 class TestSolution(unittest.TestCase):
-    def test_isValid(self):
+    def test_leetcode_20_isValid(self):
         s = problem.Solution()
         for item in unittest_data:
             result = s.isValid(item.s)

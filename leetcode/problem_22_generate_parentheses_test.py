@@ -15,9 +15,7 @@ unittest_data = [
 
 
 def assertGeneratedParenthesesEqual(result: list[str] = [], expected: list[str] = []):
-    assertError = AssertionError(
-        "AssertionError, result is {}, expected is {}".format(result, expected)
-    )
+    assertError = AssertionError("AssertionError, result is {}, expected is {}".format(result, expected))
 
     if len(result) != len(expected):
         raise assertError
@@ -28,7 +26,7 @@ def assertGeneratedParenthesesEqual(result: list[str] = [], expected: list[str] 
 
 
 class TestSolution(unittest.TestCase):
-    def test_generateParenthesis(self):
+    def test_leetcode_22_generateParenthesis(self):
         s = problem.Solution()
         for item in unittest_data:
             result = s.generateParenthesis(item.n)

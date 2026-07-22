@@ -17,7 +17,7 @@ unittest_data = [
 
 
 class TestSolution(unittest.TestCase):
-    def test_nextPermutation(self):
+    def test_leetcode_31_nextPermutation(self):
         s = problem.Solution()
         for item in unittest_data:
             s.nextPermutation(item.nums)

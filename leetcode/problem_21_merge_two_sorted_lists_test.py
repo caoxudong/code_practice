@@ -50,24 +50,16 @@ def assertListNodeEqual(
     if result == None and expected == None:
         return
     if result == None and expected != None:
-        raise AssertionError(
-            "AssertionError, result is None, expected is {}".format(
-                expected.to_string()
-            )
-        )
+        raise AssertionError("AssertionError, result is None, expected is {}".format(expected.to_string()))
     if result != None and expected == None:
-        raise AssertionError(
-            "AssertionError, result is {}, expected is None".format(result.to_string())
-        )
+        raise AssertionError("AssertionError, result is {}, expected is None".format(result.to_string()))
 
     result_tmp_node = result
     expected_tmp_node = expected
     while True:
         if result_tmp_node.val != expected_tmp_node.val:
             raise AssertionError(
-                "AssertionError, result is {}, expected is {}".format(
-                    result.to_string(), expected.to_string()
-                )
+                "AssertionError, result is {}, expected is {}".format(result.to_string(), expected.to_string())
             )
 
         result_tmp_node = result_tmp_node.next
@@ -78,14 +70,12 @@ def assertListNodeEqual(
             continue
         else:
             raise AssertionError(
-                "AssertionError, result is {}, expected is {}".format(
-                    result.to_string(), expected.to_string()
-                )
+                "AssertionError, result is {}, expected is {}".format(result.to_string(), expected.to_string())
             )
 
 
 class TestSolution(unittest.TestCase):
-    def test_mergeTwoLists(self):
+    def test_leetcode_21_mergeTwoLists(self):
         s = problem.Solution()
         for item in unittest_data:
             result = s.mergeTwoLists(item.list1, item.list2)
