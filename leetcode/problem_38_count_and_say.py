@@ -34,4 +34,27 @@ Constraints:
 
 class Solution:
     def countAndSay(self, n: int) -> str:
-        return ""
+        def rle_str(n_str: str) -> str:
+            retval = []
+            last_c = n_str[0]
+            last_c_count = 1
+            for i in range(1, len(n_str)):
+                c = n_str[i]
+                if c == last_c:
+                    last_c_count += 1
+                else:
+                    retval.append(str(last_c_count))
+                    retval.append(last_c)
+                    last_c = c
+                    last_c_count = 1
+            retval.append(str(last_c_count))
+            retval.append(last_c)
+            return "".join(retval)
+
+        count_and_say_map = {1: "1"}
+        for i in range(2, n + 1):
+            last = count_and_say_map[i - 1]
+            last_rle = rle_str(last)
+            count_and_say_map[i] = last_rle
+
+        return count_and_say_map[n]
