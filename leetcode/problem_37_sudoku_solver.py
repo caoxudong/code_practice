@@ -44,7 +44,6 @@ Constraints:
 * It is guaranteed that the input board has only one solution.
 """
 
-
 from re import sub
 
 
@@ -53,85 +52,97 @@ class Solution:
         """
         Do not return anything, modify board in-place instead.
         """
-        v_numbers_sets: dict[int, set[str]] = {
-            0: set([]),
-            1: set([]),
-            2: set([]),
-            3: set([]),
-            4: set([]),
-            5: set([]),
-            6: set([]),
-            7: set([]),
-            8: set([]),
+        v_numbers_sets: dict[int, int] = {
+            0: 0,
+            1: 0,
+            2: 0,
+            3: 0,
+            4: 0,
+            5: 0,
+            6: 0,
+            7: 0,
+            8: 0,
         }
         h_numbers_sets: dict[int, set[str]] = {
-            0: set([]),
-            1: set([]),
-            2: set([]),
-            3: set([]),
-            4: set([]),
-            5: set([]),
-            6: set([]),
-            7: set([]),
-            8: set([]),
+            0: 0,
+            1: 0,
+            2: 0,
+            3: 0,
+            4: 0,
+            5: 0,
+            6: 0,
+            7: 0,
+            8: 0,
         }
         sub_sudoku_numbers_sets: dict[str, set[str]] = {
-            "0_0": set([]),
-            "0_1": set([]),
-            "0_2": set([]),
-            "1_0": set([]),
-            "1_1": set([]),
-            "1_2": set([]),
-            "2_0": set([]),
-            "2_1": set([]),
-            "2_2": set([]),
+            "0_0": 0,
+            "0_1": 0,
+            "0_2": 0,
+            "1_0": 0,
+            "1_1": 0,
+            "1_2": 0,
+            "2_0": 0,
+            "2_1": 0,
+            "2_2": 0,
         }
 
         def make_key(i: int, j: int) -> str:
-            return "%s_%s" % (int(i/3),int(j/3))
+            return "%s_%s" % (int(i / 3), int(j / 3))
 
         def validate(board: list[list[str]], i: int, j: int, n: int) -> bool:
             nonlocal v_numbers_sets, h_numbers_sets, sub_sudoku_numbers_sets
-            c = "%s"%(n)
-            if c in v_numbers_sets[i] or c in h_numbers_sets[j]:
+            tmp = 1 << n
+            if v_numbers_sets[i] & tmp != 0 or h_numbers_sets[j] & tmp != 0:
                 return False
-            sub_sudoku = sub_sudoku_numbers_sets.get(make_key(i,j))
-            if sub_sudoku is not None and c in set(sub_sudoku):
+            sub_sudoku = sub_sudoku_numbers_sets.get(make_key(i, j))
+            if sub_sudoku is not None and int(sub_sudoku) & tmp != 0:
                 return False
             return True
 
-        def solveSudokuInner(board: list[list[str]]) -> bool:
+        def solveSudokuInner(board: list[list[str]], start_v: int, start_h: int) -> bool:
             nonlocal v_numbers_sets, h_numbers_sets, sub_sudoku_numbers_sets
-            for i in range(0,9):
-                for j in range(0,9):
+            for i in range(start_v, 9):
+                for j in range(0, 9):
+                    if i == start_v and j < start_h:
+                        continue
                     c = board[i][j]
                     if c == ".":
-                        for n in range (0, 9):
-                            number = n+1
+                        for n in range(0, 9):
+                            number = n + 1
                             if validate(board, i, j, number):
-                                number_str = "%s"%(number)
+                                number_str = "%s" % (number)
                                 board[i][j] = number_str
-                                v_numbers_sets[i].add(number_str)
-                                h_numbers_sets[j].add(number_str)
-                                sub_sudoku_numbers_sets[make_key(i,j)].add(number_str)
-                                if solveSudokuInner(board):
-                                    return True
+                                v_numbers_sets[i] |= 1 << number
+                                h_numbers_sets[j] |= 1 << number
+                                sub_sudoku_numbers_sets[make_key(i, j)] |= 1 << number
+
+                                if i < 8:
+                                    if j < 8:
+                                        if solveSudokuInner(board, i, j + 1):
+                                            return True
+                                    else:
+                                        if solveSudokuInner(board, i + 1, 0):
+                                            return True
+                                else:
+                                    if j < 8:
+                                        if solveSudokuInner(board, i, j + 1):
+                                            return True
+                                    else:
+                                        return True
+
                                 board[i][j] = "."
-                                v_numbers_sets[i].remove(number_str)
-                                h_numbers_sets[j].remove(number_str)
-                                sub_sudoku_numbers_sets[make_key(i,j)].remove(number_str)
+                                v_numbers_sets[i] &= ~(1 << number)
+                                h_numbers_sets[j] &= ~(1 << number)
+                                sub_sudoku_numbers_sets[make_key(i, j)] &= ~(1 << number)
                         return False
             return True
-        
-        for i in range(0,9):
-            for j in range(0,9):
+
+        for i in range(0, 9):
+            for j in range(0, 9):
                 c = board[i][j]
                 if c != ".":
-                    v_numbers_sets[i].add(c)
-                    h_numbers_sets[j].add(c)
-                    sub_sudoku_numbers_sets[make_key(i,j)].add(c)
+                    v_numbers_sets[i] |= 1 << int(c)
+                    h_numbers_sets[j] |= 1 << int(c)
+                    sub_sudoku_numbers_sets[make_key(i, j)] |= 1 << int(c)
 
-        solveSudokuInner(board)
-        
-
-                
+        solveSudokuInner(board, 0, 0)
