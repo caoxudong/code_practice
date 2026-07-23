@@ -18,8 +18,8 @@ unittest_data = [
 
 
 class TestSolution(unittest.TestCase):
-    def test_leetcode_38_countAndSay(self):
+    def test_leetcode_39_combinationSum(self):
         s = problem.Solution()
         for item in unittest_data:
-            retval = s.countAndSay(item.n)
+            retval = s.combinationSum(item.candidates, item.target)
             self.assertEqual(retval, item.expected)
