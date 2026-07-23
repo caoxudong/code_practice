@@ -32,7 +32,6 @@ Constraints:
 * 1 <= target <= 40
 """
 
-from operator import le
 from typing import List
 
 
