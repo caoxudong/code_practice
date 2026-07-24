@@ -38,24 +38,22 @@ from typing import List
 
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
-
+        ans = []
+        ds = []
         candidates.sort()
 
-        res = []
-
-        def make_combination(idx, comb, total):
-            if total == target:
-                res.append(comb[:])
+        def findCombination(ind, target):
+            if target == 0:
+                ans.append(ds[:])
                 return
+            for i in range(ind, len(candidates)):
+                if i > ind and candidates[i] == candidates[i - 1]:
+                    continue
+                if candidates[i] > target:
+                    break
+                ds.append(candidates[i])
+                findCombination(i + 1, target - candidates[i])
+                ds.pop()
 
-            if total > target or idx >= len(candidates):
-                return
-
-            comb.append(candidates[idx])
-            make_combination(idx, comb, total + candidates[idx])
-            comb.pop()
-            make_combination(idx + 1, comb, total)
-
-            return res
-
-        return make_combination(0, [], 0)
+        findCombination(0, target)
+        return ans
