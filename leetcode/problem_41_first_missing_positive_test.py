@@ -10,6 +10,7 @@ class UnitTestData:
 
 
 unittest_data = [
+    UnitTestData(nums=[1, 2, 0], expected=3),
     UnitTestData(nums=[3, 4, -1, 1], expected=2),
     UnitTestData(nums=[7, 8, 9, 11, 12], expected=1),
 ]
@@ -19,5 +20,5 @@ class TestSolution(unittest.TestCase):
     def test_leetcode_41_firstMissingPositive(self):
         s = problem.Solution()
         for item in unittest_data:
-            retval = s.firstMissingPositive(item.candidates, item.target)
+            retval = s.firstMissingPositive(item.nums)
             self.assertEqual(retval, item.expected)
