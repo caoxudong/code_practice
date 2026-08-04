@@ -24,4 +24,29 @@ from typing import List
 
 class Solution:
     def trap(self, height: List[int]) -> int:
-        return 0
+        retval = 0
+        water_level = 0
+        while True:
+            positive_counts = 0
+            last_non_zero_pos = -1
+            for idx, val in enumerate(height):
+                real_val = val - water_level
+                if real_val <= 0:
+                    continue
+                else:
+                    positive_counts += 1
+                    if last_non_zero_pos == -1:
+                        last_non_zero_pos = idx
+                        continue
+                    else:
+                        if idx - last_non_zero_pos == 1:
+                            last_non_zero_pos = idx
+                            continue
+                        else:
+                            retval += idx - last_non_zero_pos - 1
+                            last_non_zero_pos = idx
+                            continue
+            if positive_counts < 2:
+                break
+            water_level += 1
+        return retval
