@@ -14,7 +14,7 @@ unittest_data = [
 
 
 class TestSolution(unittest.TestCase):
-    def test_maxSubArray(self):
+    def test_leetcode_53_maxSubArray(self):
         s = problem.Solution()
         for item in unittest_data:
             result = s.maxSubArray(item.nums)

@@ -16,7 +16,7 @@ unittest_data = [
 
 
 class TestSolution(unittest.TestCase):
-    def test_maxProduct(self):
+    def test_leetcode_152_maxProduct(self):
         s = problem.Solution()
         for item in unittest_data:
             result = s.maxProduct(item.nums)

@@ -26025,7 +26025,7 @@ unittest_data = [
 
 
 class TestSolution(unittest.TestCase):
-    def test_maxProfit(self):
+    def test_leetcode_121_maxProfit(self):
         s = problem.Solution()
         for item in unittest_data:
             result = s.maxProfit(item.prices)
