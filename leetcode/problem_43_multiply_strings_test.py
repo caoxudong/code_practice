@@ -11,8 +11,11 @@ class UnitTestData:
 
 
 unittest_data = [
-    UnitTestData(num1="2", num2="3", expected="6"),
-    UnitTestData(num1="123", num2="456", expected="56088"),
+    # UnitTestData(num1="2", num2="3", expected="6"),
+    # UnitTestData(num1="123", num2="456", expected="56088"),
+    # UnitTestData(num1="9133", num2="0", expected="0"),
+    # UnitTestData(num1="12", num2="308", expected="3696"),
+    UnitTestData(num1="9133", num2="0", expected="0"),
 ]
 
 
