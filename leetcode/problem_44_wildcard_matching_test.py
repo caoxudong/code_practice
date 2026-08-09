@@ -14,6 +14,8 @@ unittest_data = [
     UnitTestData(s="aa", p="a", expected=False),
     UnitTestData(s="aa", p="*", expected=True),
     UnitTestData(s="cb", p="?a", expected=False),
+    UnitTestData(s="acdcb", p="a*c?b", expected=False),
+    UnitTestData(s="mississippi", p="m??*ss*?i*pi", expected=False),
 ]
 
 
