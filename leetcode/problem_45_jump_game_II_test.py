@@ -12,6 +12,11 @@ class UnitTestData:
 unittest_data = [
     UnitTestData(nums=[2, 3, 1, 1, 4], expected=2),
     UnitTestData(nums=[2, 3, 0, 1, 4], expected=2),
+    UnitTestData(nums=[2, 1], expected=1),
+    UnitTestData(nums=[2, 3, 1, 1, 4], expected=2),
+    UnitTestData(nums=[1, 2, 3], expected=2),
+    UnitTestData(nums=[1, 1, 1, 1], expected=3),
+    UnitTestData(nums=[1, 2, 1, 1], expected=2),
 ]
 
 
