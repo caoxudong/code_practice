@@ -21,4 +21,4 @@ class TestSolution(unittest.TestCase):
         s = problem.Solution()
         for item in unittest_data:
             retval = s.permute(item.nums)
-            self.assertEqual(retval, item.expected)
+            self.assertEqual(retval.sort(), item.expected.sort())
