@@ -13,6 +13,7 @@ unittest_data = [
     UnitTestData(nums=[1, 2, 3], expected=[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]),
     UnitTestData(nums=[0, 1], expected=[[0, 1], [1, 0]]),
     UnitTestData(nums=[1], expected=[[1]]),
+    UnitTestData(nums=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], expected=[[1]]),
 ]
 
 

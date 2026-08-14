@@ -27,22 +27,15 @@ from typing import List
 
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-        def inner_permute(inner_nums: List[int]) -> List[List[int]]:
-            if len(inner_nums) == 1:
-                return [inner_nums]
-            else:
-                nums_head = inner_nums[0]
-                nums_tails = inner_nums[1:]
-                inner_permute_retval = inner_permute(nums_tails)
-                retval = []
-                for tmp_list in inner_permute_retval:
-                    for i in range(len(tmp_list)):
-                        new_list = tmp_list.copy()
-                        new_list.insert(i, nums_head)
-                        retval.append(new_list)
-                    new_list = tmp_list.copy()
-                    new_list.append(nums_head)
-                    retval.append(new_list)
-                return retval
-
-        return inner_permute(nums)
+        res = []
+        stack = [([], nums.copy())]
+        while stack:
+            path, remain = stack.pop()
+            if not remain:
+                res.append(path)
+                continue
+            for i in reversed(range(len(remain))):
+                new_path = path + [remain[i]]
+                new_remain = remain[:i] + remain[i + 1 :]
+                stack.append((new_path, new_remain))
+        return res
