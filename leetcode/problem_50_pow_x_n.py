@@ -31,4 +31,21 @@ Constraints:
 
 class Solution:
     def myPow(self, x: float, n: int) -> float:
-        return 0
+        num = 1
+        nn = n
+
+        if nn < 0:
+            nn = -nn
+
+        while nn > 0:
+            if nn % 2 == 1:
+                num = num * x
+                nn = nn - 1
+            else:
+                x = x * x
+                nn /= 2
+
+        if n < 0:
+            num = 1.0 / num
+
+        return num
