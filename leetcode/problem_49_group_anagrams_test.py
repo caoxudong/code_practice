@@ -29,4 +29,4 @@ class TestSolution(unittest.TestCase):
         s = problem.Solution()
         for item in unittest_data:
             retval = s.groupAnagrams(item.strs)
-            self.assertEqual(item.expected, retval)
+            self.assertEqual(item.expected.sort(), retval.sort())

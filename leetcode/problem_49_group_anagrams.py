@@ -32,4 +32,18 @@ from typing import List
 
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        return None
+        str_key_map = {}
+
+        for tmp_str in strs:
+            str_key = "".join(sorted(tmp_str))
+            str_key_list = str_key_map.get(str_key)
+            if str_key_list is None:
+                str_key_list = []
+                str_key_map[str_key] = str_key_list
+            str_key_list.append(tmp_str)
+
+        retval = []
+        for v in str_key_map.values():
+            retval.append(v)
+
+        return retval
