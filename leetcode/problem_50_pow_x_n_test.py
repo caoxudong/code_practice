@@ -14,7 +14,7 @@ unittest_data = [
     UnitTestData(2.00000, n=10, expected=1024.00000),
     UnitTestData(x=2.10000, n=3, expected=9.26100),
     UnitTestData(x=2.00000, n=-2, expected=0.25000),
-    UnitTestData(x=0.00001, n=2147483647, expected=0.25000),
+    UnitTestData(x=0.00001, n=2147483647, expected=0.00000),
 ]
 
 
