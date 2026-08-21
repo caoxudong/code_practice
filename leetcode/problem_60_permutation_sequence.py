@@ -32,7 +32,24 @@ Constraints:
 * 1 <= k <= n!
 """
 
+import re
+from typing import List
+
 
 class Solution:
     def getPermutation(self, n: int, k: int) -> str:
-        return ""
+        nums = [x for x in range(1, n + 1)]
+        res = []
+        stack = [([], nums)]
+        while stack:
+            path, remain = stack.pop()
+            if not remain:
+                res.append(path)
+                if len(res) == k:
+                    break
+                continue
+            for i in reversed(range(len(remain))):
+                new_path = path + [remain[i]]
+                new_remain = remain[:i] + remain[i + 1 :]
+                stack.append((new_path, new_remain))
+        return "".join(str(x) for x in res[-1])
