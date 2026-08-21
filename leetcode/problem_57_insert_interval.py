@@ -37,4 +37,26 @@ from typing import List
 
 class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
-        return None
+        def mergeList(intervals: List[List[int]]) -> List[List[int]]:
+            new_list = intervals.copy()
+            retval = []
+            last_list = new_list[0]
+            for i in new_list[1:]:
+                if i[0] <= last_list[1]:
+                    if i[1] > last_list[1]:
+                        last_list[1] = i[1]
+                else:
+                    retval.append(last_list)
+                    last_list = i
+            retval.append(last_list)
+            return retval
+
+        def insertIntervals(intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+            newList = intervals.copy()
+            newList.append(newInterval)
+            newList.sort(key=lambda x: x[0])
+            return newList
+
+        insertedList = insertIntervals(intervals, newInterval)
+        mergedList = mergeList(insertedList)
+        return mergedList
