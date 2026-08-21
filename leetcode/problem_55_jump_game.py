@@ -28,4 +28,15 @@ from typing import List
 
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        return False
+        near = far = jumps = 0
+        while far < len(nums) - 1:
+            farthest = 0
+            for i in range(near, far + 1):
+                farthest = max(farthest, i + nums[i])
+            if farthest == 0:
+                return False
+            near = far + 1
+            far = farthest
+            jumps += 1
+
+        return True
