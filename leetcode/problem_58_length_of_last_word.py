@@ -32,4 +32,9 @@ Constraints:
 
 class Solution:
     def lengthOfLastWord(self, s: str) -> int:
+        elements = s.split()
+        for i in reversed(elements):
+            if i == "":
+                continue
+            return len(i)
         return 0
