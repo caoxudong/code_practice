@@ -31,25 +31,29 @@ Constraints:
 
 from typing import Optional
 
-
-class ListNode:
-    def __init__(self, val: int = 0, next=None):
-        self.val = val
-        self.next = next
-
-    def to_string(self) -> str:
-        list_values: list[int] = []
-
-        node = self
-        while True:
-            list_values.append(node.val)
-            node = node.next
-            if node == None:
-                break
-
-        return "[{}]".format(",".join(map(str, list_values)))
+from common_data_structure.list_node import ListNode
 
 
 class Solution:
     def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
-        return None
+        if head == None:
+            return None
+        list_len = 0
+        list_elements = {}
+        cursor = head
+        while cursor is not None:
+            list_elements[list_len] = cursor
+            cursor = cursor.next
+            list_elements[list_len].next = None
+            list_len += 1
+
+        real_k = k % list_len
+        cursor = ListNode()
+        retval = cursor
+        for i in range(list_len - real_k, list_len):
+            cursor.next = list_elements[i]
+            cursor = cursor.next
+        for i in range(0, list_len - real_k):
+            cursor.next = list_elements[i]
+            cursor = cursor.next
+        return retval.next
