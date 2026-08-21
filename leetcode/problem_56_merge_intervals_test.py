@@ -10,9 +10,10 @@ class UnitTestData:
 
 
 unittest_data = [
-    UnitTestData(intervals=[[1, 3], [2, 6], [8, 10], [15, 18]], expected=[[1, 5]]),
     UnitTestData(intervals=[[1, 3], [2, 6], [8, 10], [15, 18]], expected=[[1, 6], [8, 10], [15, 18]]),
+    UnitTestData(intervals=[[1, 4], [4, 5]], expected=[[1, 5]]),
     UnitTestData(intervals=[[4, 7], [1, 4]], expected=[[1, 7]]),
+    UnitTestData(intervals=[[1, 4], [2, 3]], expected=[[1, 4]]),
 ]
 
 

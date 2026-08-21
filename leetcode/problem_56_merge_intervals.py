@@ -31,4 +31,15 @@ from typing import List
 
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        return None
+        new_list = sorted(intervals, key=lambda x: x[0])
+        retval = []
+        last_list = new_list[0]
+        for i in new_list[1:]:
+            if i[0] <= last_list[1]:
+                if i[1] > last_list[1]:
+                    last_list[1] = i[1]
+            else:
+                retval.append(last_list)
+                last_list = i
+        retval.append(last_list)
+        return retval
