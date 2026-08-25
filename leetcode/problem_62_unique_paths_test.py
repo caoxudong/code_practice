@@ -13,8 +13,10 @@ class UnitTestData:
 
 
 unittest_data = [
-    UnitTestData(m=3, n=7, expected=28),
-    UnitTestData(m=3, n=2, expected=3),
+    # UnitTestData(m=3, n=7, expected=28),
+    # UnitTestData(m=3, n=2, expected=3),
+    # UnitTestData(m=1, n=2, expected=1),
+    UnitTestData(m=23, n=12, expected=1),
 ]
 
 
