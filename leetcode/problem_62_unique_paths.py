@@ -27,24 +27,17 @@ Constraints:
 * 1 <= m, n <= 100
 """
 
-import copy
+from functools import cache
 
 
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
-        stack = [(0, 0)]
-        retval = 0
-        while len(stack) != 0:
-            path = stack.pop()
-            if path[0] == (m - 1):
-                if path[1] == (n - 1):
-                    retval += 1
-                else:
-                    stack.append([path[0], path[1] + 1])
-            else:
-                if path[1] == (n - 1):
-                    stack.append([path[0] + 1, path[1]])
-                else:
-                    stack.append([path[0] + 1, path[1]])
-                    stack.append([path[0], path[1] + 1])
-        return retval
+        @cache
+        def dfs(i, j):
+            if i >= m or j >= n:
+                return 0
+            if i == m - 1 and j == n - 1:
+                return 1
+            return dfs(i + 1, j) + dfs(i, j + 1)
+
+        return dfs(0, 0)
