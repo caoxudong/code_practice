@@ -1,5 +1,5 @@
 import unittest
-import problem_65_valid_number as problem
+import leetcode.problem_65_valid_number as problem
 
 
 class UnitTestData:

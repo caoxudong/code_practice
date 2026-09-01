@@ -38,7 +38,11 @@ Constraints:
 * s consists of only English letters (both uppercase and lowercase), digits (0-9), plus '+', minus '-', or dot '.'.
 """
 
+import re
+
 
 class Solution:
     def isNumber(self, s: str) -> bool:
-        return False
+        pattern_str = r"^[+-]?(\d+\.?\d*|\.\d+)([eE][+-]?\d+)?$"
+        match = re.match(pattern_str, s)
+        return match != None
