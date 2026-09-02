@@ -20,5 +20,5 @@ class TestSolution(unittest.TestCase):
     def test_leetcode_67_add_binary(self):
         s = problem.Solution()
         for item in unittest_data:
-            retval = s.plusOne(item.a, item.b)
+            retval = s.addBinary(item.a, item.b)
             self.assertEqual(retval, item.expected)
