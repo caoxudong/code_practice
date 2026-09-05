@@ -63,4 +63,33 @@ from typing import List
 
 class Solution:
     def fullJustify(self, words: List[str], maxWidth: int) -> List[str]:
-        return []
+        retval = []
+
+        current_line = []
+        current_line_len = 0
+        for word in words:
+            word_len = len(word)
+            if current_line_len + word_len > maxWidth:
+                real_current_line_len = sum(len(w) for w in current_line)
+                total_spaces = maxWidth - real_current_line_len
+                if len(current_line) == 1:
+                    current_line[0] += " " * total_spaces
+                else:
+                    spaces_between_words = total_spaces // (len(current_line) - 1)
+                    extra_spaces = total_spaces % (len(current_line) - 1)
+                    for i in range(len(current_line) - 1):
+                        current_line[i] += " " * spaces_between_words
+                        if i < extra_spaces:
+                            current_line[i] += " "
+                retval.append("".join(current_line))
+                current_line = []
+                current_line_len = 0
+            current_line.append(word)
+            current_line_len += word_len + 1  # +1 is for the space
+
+        if len(current_line) > 0:
+            last_line = " ".join(current_line)
+            last_line += " " * (maxWidth - len(last_line))
+            retval.append(last_line)
+
+        return retval
