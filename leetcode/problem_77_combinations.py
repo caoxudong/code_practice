@@ -28,4 +28,17 @@ from typing import List
 
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
-        return []
+        res = []
+
+        def backtrack(start, path):
+            if len(path) == k:
+                res.append(path.copy())
+                return
+            # start 保证只取后面元素，避免重复对
+            for i in range(start, n + 1):
+                path.append(i)
+                backtrack(i + 1, path)
+                path.pop()
+
+        backtrack(1, [])
+        return res
