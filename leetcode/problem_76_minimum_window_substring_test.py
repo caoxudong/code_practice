@@ -1,5 +1,5 @@
 import unittest
-from leetcode.problem_76_minimum_window_substring import problem
+import leetcode.problem_76_minimum_window_substring as problem
 
 
 class UnitTestData:
