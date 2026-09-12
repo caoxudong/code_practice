@@ -43,9 +43,8 @@ class Solution:
         end = 0
         min_len = float("inf")
         start_index = 0
-        # UPVOTE !
-        for char in t:
-            map[ord(char)] += 1
+        for c in t:
+            map[ord(c)] += 1
 
         while end < len(s):
             if map[ord(s[end])] > 0:
