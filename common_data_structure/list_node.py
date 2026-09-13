@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Optional, Self
 
 
 class ListNode:
@@ -18,6 +18,29 @@ class ListNode:
 
         return "[{}]".format(",".join(map(str, list_values)))
 
+    def from_list(nums: list[int] = []) -> Optional[Self]:
+        if len(nums) == 0:
+            return None
+
+        last_listnode = None
+        while len(nums) > 0:
+            tmp_val = nums.pop()
+            tmp_listnode = ListNode(tmp_val, last_listnode)
+            last_listnode = tmp_listnode
+        return last_listnode
+
+    def to_list(self) -> list[int]:
+        list_values: list[int] = []
+
+        node = self
+        while True:
+            list_values.append(node.val)
+            node = node.next
+            if node == None:
+                break
+
+        return list_values
+
 
 def create_ListNode(nums: list[int] = []) -> ListNode:
     last_listnode = None
@@ -26,17 +49,6 @@ def create_ListNode(nums: list[int] = []) -> ListNode:
         tmp_listnode = ListNode(tmp_val, last_listnode)
         last_listnode = tmp_listnode
     return last_listnode
-
-
-def create_ListNodeList(nums: list[int] = []) -> List[ListNode]:
-    retval = []
-    last_listnode = None
-    while len(nums) > 0:
-        tmp_val = nums.pop()
-        tmp_listnode = ListNode(tmp_val, last_listnode)
-        last_listnode = tmp_listnode
-        retval.insert(0, tmp_listnode)
-    return retval
 
 
 def assertListNodeEqual(
