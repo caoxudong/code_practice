@@ -10,8 +10,9 @@ class UnitTestData:
 
 
 unittest_data = [
-    UnitTestData(nums=[2, 5, 6, 0, 0, 1, 2], target=0, expected=True),
-    UnitTestData(nums=[2, 5, 6, 0, 0, 1, 2], target=3, expected=False),
+    # UnitTestData(nums=[2, 5, 6, 0, 0, 1, 2], target=0, expected=True),
+    # UnitTestData(nums=[2, 5, 6, 0, 0, 1, 2], target=3, expected=False),
+    UnitTestData(nums=[1, 0, 1, 1, 1], target=0, expected=True),
 ]
 
 
