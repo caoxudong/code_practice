@@ -48,4 +48,14 @@ from typing import List
 
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        return 0
+        num_counts = {}
+        for n in nums:
+            num_counts[n] = num_counts.get(n, 0) + 1
+
+        i = 0
+        for n, count in num_counts.items():
+            for _ in range(min(count, 2)):
+                nums[i] = n
+                i += 1
+
+        return i
