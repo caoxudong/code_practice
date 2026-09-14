@@ -20,6 +20,5 @@ class TestSolution(unittest.TestCase):
     def test_leetcode_82_remove_duplicates_from_sorted_list_II(self):
         s = problem.Solution()
         for item in unittest_data:
-            head = problem.ListNode.from_list(item.head)
-            retval = s.deleteDuplicates(head)
+            retval = s.deleteDuplicates(item.head)
             self.assertEqual(retval.to_list(), item.expected)

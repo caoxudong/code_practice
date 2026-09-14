@@ -34,4 +34,19 @@ from common_data_structure.list_node import ListNode
 
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        return None
+        tmp_cursor = head
+        values_count = {}
+
+        while tmp_cursor != None:
+            values_count[tmp_cursor.val] = values_count.get(tmp_cursor.val, 0) + 1
+            tmp_cursor = tmp_cursor.next
+
+        dummy_node = ListNode(val=0, next=head)
+        new_cursor = dummy_node
+        while new_cursor.next != None:
+            if values_count[new_cursor.next.val] > 1:
+                new_cursor.next = new_cursor.next.next
+            else:
+                new_cursor = new_cursor.next
+                
+        return dummy_node.next
