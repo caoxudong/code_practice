@@ -30,4 +30,22 @@ from common_data_structure.list_node import ListNode
 
 class Solution:
     def partition(self, head: ListNode | None, x: int) -> ListNode | None:
-        return None
+        if head is None:
+            return None
+
+        def to_list(head: ListNode) -> list[int]:
+            list_values: list[int] = []
+            node = head
+            while True:
+                list_values.append(node.val)
+                node = node.next
+                if node == None:
+                    break
+            return list_values
+
+        values = to_list(head)
+        less_than_x = [v for v in values if v < x]
+        greater_than_or_equal_x = [v for v in values if v >= x]
+        partitioned_values = less_than_x + greater_than_or_equal_x
+        partitioned_head = ListNode.from_list(partitioned_values)
+        return partitioned_head
