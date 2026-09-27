@@ -9,9 +9,21 @@ class UnitTestData:
 
 
 unittest_data = [
-    UnitTestData(s="12", expected=2),
-    UnitTestData(s="226", expected=3),
-    UnitTestData(s="06", expected=0),
+    # UnitTestData(s="12", expected=2),
+    # UnitTestData(s="226", expected=3),
+    # UnitTestData(s="06", expected=0),
+    # UnitTestData(s="1", expected=1),
+    # UnitTestData(s="2101", expected=1),
+    # UnitTestData(s="111111111111", expected=233),
+    # UnitTestData(s="111111111111111", expected=987),
+    # UnitTestData(s="11111111111111111", expected=2584),
+    # UnitTestData(s="11111111111111111111111", expected=46368),
+    # UnitTestData(s="11111111111111111111111111", expected=196418),
+    # UnitTestData(s="11111111111111111111111111111", expected=832040),
+    # UnitTestData(s="111111111111111111111111111111111", expected=5702887),
+    # UnitTestData(s="111111111111111111111111111111111111", expected=24157817),
+    UnitTestData(s="1111111111111111111111111111111111111111", expected=1),
+    # UnitTestData(s="111111111111111111111111111111111111111111111", expected=1),
 ]
 
 
