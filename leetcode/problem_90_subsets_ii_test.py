@@ -19,4 +19,4 @@ class TestSolution(unittest.TestCase):
         for item in unittest_data:
             soluiton = problem.Solution()
             retval = soluiton.subsetsWithDup(item.nums)
-            self.assertEqual(retval, item.expected)
+            self.assertEqual(sorted(retval), sorted(item.expected))
