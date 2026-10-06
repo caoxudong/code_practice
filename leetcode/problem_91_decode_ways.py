@@ -47,70 +47,22 @@ from operator import index
 
 class Solution:
     def numDecodings(self, s: str) -> int:
-        class DataTuple:
-            def __init__(self, index: int, subStr: str, endFlag: bool):
-                self.index = index
-                self.subStr = subStr
-                self.endFlag = endFlag
+        if not s or s[0] == '0':
+            return 0
+        
+        n = len(s)
+        dp = [0] * (n + 1)
+        dp[0] = 1
+        dp[1] = 1
 
-        valid_number_set = set()
-        for i in range(1, 27):
-            valid_number_set.add(str(i))
+        for i in range(2, n + 1):
+            one_digit = int(s[i - 1])
+            two_digits = int(s[i - 2:i])
 
-        if len(s) == 1:
-            if s[0] in valid_number_set:
-                return 1
-            else:
-                return 0
+            if one_digit != 0:
+                dp[i] += dp[i - 1]
 
-        len_s = len(s)
-        p_s = 0
-        stack = [DataTuple(p_s + 1, s[0], False)]
-        if len(s) == 2:
-            stack.append(DataTuple(p_s + 2, s[0:2], True))
-        else:
-            stack.append(DataTuple(p_s + 2, s[0:2], False))
+            if 10 <= two_digits <= 26:
+                dp[i] += dp[i - 2]
 
-        retval = 0
-        while len(stack) > 0:
-            tmp_node_data = stack.pop()
-            if tmp_node_data.endFlag == True:
-                if tmp_node_data.subStr not in valid_number_set:
-                    continue
-
-                retval += 1
-            else:
-                if tmp_node_data.subStr not in valid_number_set:
-                    continue
-
-                if tmp_node_data.index >= len_s:
-                    raise Exception("wrong index and endFlag combo")
-                else:
-                    if tmp_node_data.index + 2 <= len_s:
-                        if tmp_node_data.index + 2 == len_s:
-                            stack.append(
-                                DataTuple(
-                                    tmp_node_data.index + 2, s[tmp_node_data.index : tmp_node_data.index + 2], True
-                                )
-                            )
-                        else:
-                            stack.append(
-                                DataTuple(
-                                    tmp_node_data.index + 2, s[tmp_node_data.index : tmp_node_data.index + 2], False
-                                )
-                            )
-                    if tmp_node_data.index + 1 <= len_s:
-                        if tmp_node_data.index + 1 == len_s:
-                            stack.append(
-                                DataTuple(
-                                    tmp_node_data.index + 1, s[tmp_node_data.index : tmp_node_data.index + 1], True
-                                )
-                            )
-                        else:
-                            stack.append(
-                                DataTuple(
-                                    tmp_node_data.index + 1, s[tmp_node_data.index : tmp_node_data.index + 1], False
-                                )
-                            )
-
-        return retval
+        return dp[n]
