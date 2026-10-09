@@ -19,4 +19,8 @@ unittest_data = [
 class TestSolution(unittest.TestCase):
     def test_leetcode_95_generateTrees(self):
         for item in unittest_data:
-            self.assertEqual(sorted(problem.Solution().generateTrees(item.n)), sorted(item.expected))
+            retval = problem.Solution().generateTrees(item.n)
+            tree_list = []
+            for tree in retval:
+                tree_list.append(tree.to_list())
+            self.assertEqual(sorted(tree_list), sorted(item.expected))
