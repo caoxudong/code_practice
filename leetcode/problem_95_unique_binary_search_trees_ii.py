@@ -33,4 +33,44 @@ from common_data_structure.tree_node import TreeNode
 
 class Solution:
     def generateTrees(self, n: int) -> list[TreeNode | None]:
-        return []
+        if n == 0:
+            return []
+
+        def generate_bst_trees(
+            left_values: list[int], root_value: int, right_values: list[int]
+        ) -> list[TreeNode | None]:
+            retval = []
+            right_sub_trees = []
+            for i in range(len(right_values)):
+                right_sub_trees.extend(generate_bst_trees(right_values[:i], right_values[i], right_values[i + 1 :]))
+
+            left_sub_trees = []
+            for i in range(len(left_values)):
+                left_sub_trees.extend(generate_bst_trees(left_values[:i], left_values[i], left_values[i + 1 :]))
+
+            if len(left_sub_trees) == 0 and len(right_sub_trees) == 0:
+                root = TreeNode(root_value)
+                retval.append(root)
+            elif len(left_sub_trees) == 0:
+                for i in range(len(right_sub_trees)):
+                    root = TreeNode(root_value)
+                    root.right = right_sub_trees[i]
+                    retval.append(root)
+            elif len(right_sub_trees) == 0:
+                for i in range(len(left_sub_trees)):
+                    root = TreeNode(root_value)
+                    root.left = left_sub_trees[i]
+                    retval.append(root)
+            else:
+                for i in range(len(left_sub_trees)):
+                    for j in range(len(right_sub_trees)):
+                        root = TreeNode(root_value)
+                        root.left = left_sub_trees[i]
+                        root.right = right_sub_trees[j]
+                        retval.append(root)
+            return retval
+
+        retval = []
+        for i in range(n):
+            retval.extend(generate_bst_trees(list(range(1, i + 1)), i + 1, list(range(i + 2, n + 1))))
+        return retval
