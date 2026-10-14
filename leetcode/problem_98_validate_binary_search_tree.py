@@ -44,4 +44,13 @@ from common_data_structure.tree_node import TreeNode
 
 class Solution:
     def isValidBST(self, root: TreeNode | None) -> bool:
-        return False
+        def valid(node, minimum, maximum):
+            if not node:
+                return True
+
+            if not (node.val > minimum and node.val < maximum):
+                return False
+
+            return valid(node.left, minimum, node.val) and valid(node.right, node.val, maximum)
+
+        return valid(root, float("-inf"), float("inf"))

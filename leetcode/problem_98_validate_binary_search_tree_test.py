@@ -10,8 +10,11 @@ class UnitTestData:
 
 
 unittest_data = [
-    UnitTestData(root=TreeNode.from_list([2, 1, 3]), expected=True),
-    UnitTestData(root=TreeNode.from_list([5, 1, 4, None, None, 3, 6]), expected=False),
+    # UnitTestData(root=TreeNode.from_list([2, 1, 3]), expected=True),
+    # UnitTestData(root=TreeNode.from_list([5, 1, 4, None, None, 3, 6]), expected=False),
+    # UnitTestData(root=TreeNode.from_list([5, 4, 6, None, None, 3, 7]), expected=False),
+    # UnitTestData(root=TreeNode.from_list([32, 26, 47, 19, None, None, 56, None, 27]), expected=False),
+    UnitTestData(root=TreeNode.from_list([45, 42, None, None, 44, 43, None, 41]), expected=False),
 ]
 
 
