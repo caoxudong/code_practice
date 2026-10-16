@@ -35,6 +35,8 @@ Constraints:
 #         self.val = val
 #         self.left = left
 #         self.right = right
+from gettext import find
+
 from common_data_structure.tree_node import TreeNode
 
 
@@ -43,4 +45,30 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
+
+        inf = float("inf")
+        tmp_root = root
+        find_error = False
+        while True:
+            stack = [(tmp_root, -inf, inf)]
+            find_error = False
+            while len(stack) > 0:
+                node_tuple = stack.pop()
+                node = node_tuple[0]
+                left_child = node.left
+                right_child = node.right
+                if left_child is not None:
+                    if left_child.val >= node.val or left_child.val <= node_tuple[1]:
+                        node.val, left_child.val = left_child.val, node.val
+                        find_error = True
+                        break
+                    stack.append((left_child, node_tuple[1], node.val))
+                if right_child is not None:
+                    if right_child.val <= node.val or right_child.val >= node_tuple[2]:
+                        node.val, right_child.val = right_child.val, node.val
+                        find_error = True
+                        break
+                    stack.append((right_child, node.val, node_tuple[2]))
+            if not find_error:
+                break
         return None
