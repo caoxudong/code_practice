@@ -38,4 +38,34 @@ from common_data_structure.tree_node import TreeNode
 
 class Solution:
     def levelOrder(self, root: TreeNode | None) -> list[list[int]]:
-        return []
+        if root is None:
+            return []
+
+        stack = [(root, 1)]
+        level_values_map = {}
+        while len(stack) > 0:
+            node_tuple = stack.pop(0)
+            node = node_tuple[0]
+            node_level = node_tuple[1]
+            left_child = node.left
+            right_child = node.right
+            level_values = level_values_map.get(node_level, [])
+            level_values.append(node.val)
+            level_values_map[node_level] = level_values
+
+            if left_child:
+                stack.append((left_child, node_level + 1))
+            if right_child:
+                stack.append((right_child, node_level + 1))
+
+        retval = []
+        i = 1
+        while True:
+            level_values = level_values_map.get(i)
+            if level_values:
+                retval.append(level_values)
+                i += 1
+            else:
+                break
+
+        return retval
