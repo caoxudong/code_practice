@@ -34,4 +34,17 @@ from common_data_structure.tree_node import TreeNode
 
 class Solution:
     def maxDepth(self, root: TreeNode | None) -> int:
-        return 0
+        if root is None:
+            return 0
+        max_depth = 1
+        stack = [(root, 1)]
+        while len(stack) > 0:
+            node_tuple = stack.pop()
+            node = node_tuple[0]
+            node_depth = node_tuple[1]
+            max_depth = max(node_depth, max_depth)
+            if node.left:
+                stack.append((node.left, node_depth + 1))
+            if node.right:
+                stack.append((node.right, node_depth + 1))
+        return max_depth
