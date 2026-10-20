@@ -32,9 +32,23 @@ Constraints:
 #         self.val = val
 #         self.left = left
 #         self.right = right
+from collections import deque
+
 from common_data_structure.tree_node import TreeNode
 
 
 class Solution:
     def buildTree(self, preorder: list[int], inorder: list[int]) -> TreeNode | None:
-        return None
+        preorder = deque(preorder)
+
+        def build(preorder, inorder):
+            if inorder:
+                idx = inorder.index(preorder.popleft())
+                root = TreeNode(inorder[idx])
+
+                root.left = build(preorder, inorder[:idx])
+                root.right = build(preorder, inorder[idx + 1 :])
+
+                return root
+
+        return build(preorder, inorder)
