@@ -37,4 +37,26 @@ from common_data_structure.tree_node import TreeNode
 
 class Solution:
     def buildTree(self, inorder: list[int], postorder: list[int]) -> TreeNode | None:
-        return None
+        n = len(inorder)
+        return self.helper(inorder, postorder, 0, n - 1, 0, n - 1)
+
+    def helper(self, inorder, postorder, inS, inE, postS, postE):
+        if inS > inE:
+            return None
+
+        root = TreeNode(postorder[postE])
+
+        i = inS
+        while i <= inE:
+            if inorder[i] == root.val:
+                break
+            i += 1
+
+        leftSize = i - inS
+        rightSize = inE - i
+
+        root.left = self.helper(inorder, postorder, inS, i - 1, postS, postS + leftSize - 1)
+
+        root.right = self.helper(inorder, postorder, i + 1, inE, postE - rightSize, postE - 1)
+
+        return root
