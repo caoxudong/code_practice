@@ -16,7 +16,7 @@ unittest_data = [
         postorder=[9, 15, 7, 20, 3],
         expected=TreeNode.from_list([3, 9, 20, None, None, 15, 7]),
     ),
-    UnitTestData(preorder=[-1], inorder=[-1], expected=TreeNode.from_list([-1])),
+    UnitTestData(inorder=[-1], postorder=[-1], expected=TreeNode.from_list([-1])),
 ]
 
 
