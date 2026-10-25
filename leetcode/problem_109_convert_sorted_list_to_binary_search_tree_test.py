@@ -21,4 +21,7 @@ class TestSolution(unittest.TestCase):
         for item in unittest_data:
             solution = problem.Solution()
             retval = solution.sortedListToBST(item.head)
-            self.assertListEqual(retval.to_list(), item.expected.to_list())
+            if retval is None:
+                self.assertEqual(None, item.expected)
+            else:
+                self.assertListEqual(retval.to_list(), item.expected.to_list())
