@@ -44,4 +44,16 @@ from common_data_structure.tree_node import TreeNode
 
 class Solution:
     def sortedArrayToBST(self, nums: list[int]) -> TreeNode | None:
-        return []
+        def build_bst(nums: list[int]) -> TreeNode | None:
+            if len(nums) == 0:
+                return None
+
+            len_nums = len(nums)
+            mid_index = len_nums >> 1
+            left_child_values = nums[0:mid_index]
+            right_child_values = nums[mid_index + 1 : len_nums]
+
+            root = TreeNode(val=nums[mid_index], left=build_bst(left_child_values), right=build_bst(right_child_values))
+            return root
+
+        return build_bst(nums)
