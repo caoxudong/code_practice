@@ -28,8 +28,8 @@ Example 2:
 * Explanation: [1,null,3] and [3,1] are both height-balanced BSTs.
 
 Constraints:
-* 1 <= nums.length <= 104
-* -104 <= nums[i] <= 104
+* 1 <= nums.length <= 10^4
+* -10^4 <= nums[i] <= 10^4
 * nums is sorted in a strictly increasing order.
 """
 
