@@ -13,6 +13,7 @@ unittest_data: list[UnitTestData] = [
     UnitTestData(root=TreeNode.from_list([3, 9, 20, None, None, 15, 7]), expected=True),
     UnitTestData(root=TreeNode.from_list([1, 2, 2, 3, 3, None, None, 4, 4]), expected=False),
     UnitTestData(root=TreeNode.from_list([]), expected=True),
+    UnitTestData(root=TreeNode.from_list([1, 2, 2, 3, None, None, 3, 4, None, None, 4]), expected=False),
 ]
 
 
