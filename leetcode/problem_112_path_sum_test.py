@@ -12,7 +12,7 @@ class UnitTestData:
 
 unittest_data: list[UnitTestData] = [
     UnitTestData(
-        root=TreeNode.from_list(root=[5, 4, 8, 11, None, 13, 4, 7, 2, None, None, None, 1]), targetSum=22, expected=True
+        root=TreeNode.from_list([5, 4, 8, 11, None, 13, 4, 7, 2, None, None, None, 1]), targetSum=22, expected=True
     ),
     UnitTestData(root=TreeNode.from_list([1, 2, 3]), targetSum=5, expected=False),
     UnitTestData(root=TreeNode.from_list([]), targetSum=0, expected=False),

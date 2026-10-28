@@ -47,9 +47,33 @@ Constraints:
 #         self.val = val
 #         self.left = left
 #         self.right = right
+from ast import NodeVisitor
+from typing import Tuple
+
 from common_data_structure.tree_node import TreeNode
 
 
 class Solution:
     def hasPathSum(self, root: TreeNode | None, targetSum: int) -> bool:
+        if root is None:
+            return False
+
+        stack: list[Tuple[TreeNode, int]] = [(root, root.val)]
+        while len(stack) != 0:
+            node_tuple = stack.pop()
+            node = node_tuple[0]
+            node_sum = node_tuple[1]
+            node_left_child = node.left
+            node_right_child = node.right
+            if node_left_child is None and node_right_child is None:
+                if node_sum == targetSum:
+                    return True
+                continue
+
+            if node_left_child is not None:
+                stack.append((node_left_child, node_sum + node_left_child.val))
+
+            if node_right_child is not None:
+                stack.append((node_right_child, node_sum + node_right_child.val))
+
         return False
