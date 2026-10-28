@@ -34,9 +34,32 @@ Constraints:
 #         self.val = val
 #         self.left = left
 #         self.right = right
+from ast import Tuple
+
 from common_data_structure.tree_node import TreeNode
 
 
 class Solution:
     def minDepth(self, root: TreeNode | None) -> int:
-        return 0
+        if root is None:
+            return 0
+
+        min_level = 10000000
+        stack: list[Tuple[TreeNode, int]] = [(root, 1)]
+        while len(stack) != 0:
+            node_tuple = stack.pop()
+            node = node_tuple[0]
+            node_level = node_tuple[1]
+            node_left_child = node.left
+            node_right_child = node.right
+            if node_left_child is None and node_right_child is None:
+                min_level = min(min_level, node_level)
+                continue
+
+            if node_left_child is not None:
+                stack.append((node_left_child, node_level + 1))
+
+            if node_right_child is not None:
+                stack.append((node_right_child, node_level + 1))
+
+        return min_level
