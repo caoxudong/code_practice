@@ -1,5 +1,5 @@
 import unittest
-from common_data_structure.tree_node import TreeNode
+from common_data_structure.binary_tree_node import TreeNode
 import leetcode.problem_111_minimum_depth_of_binary_tree as problem
 
 

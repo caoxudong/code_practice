@@ -1,5 +1,5 @@
 import unittest
-from common_data_structure.tree_node import TreeNode
+from common_data_structure.binary_tree_node import TreeNode
 import leetcode.problem_105_construct_binary_tree_from_preorder_and_inorder_traversal as problem
 
 

@@ -40,7 +40,7 @@ Constraints:
 #         self.left = left
 #         self.right = right
 from common_data_structure.list_node import ListNode
-from common_data_structure.tree_node import TreeNode
+from common_data_structure.binary_tree_node import TreeNode
 
 
 class Solution:
