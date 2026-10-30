@@ -43,9 +43,34 @@ Constraints:
 #         self.val = val
 #         self.left = left
 #         self.right = right
+from curses import newpad
+
 from common_data_structure.tree_node import TreeNode
 
 
 class Solution:
     def pathSum(self, root: TreeNode | None, targetSum: int) -> list[list[int]]:
-        return []
+        if root is None:
+            return []
+
+        retval = []
+        stack: list[TreeNode] = [(root, targetSum - root.val, [root.val])]
+        while len(stack) != 0:
+            node_tuple = stack.pop()
+            node: TreeNode = node_tuple[0]
+            left_sum = node_tuple[1]
+            current_path: list[int] = node_tuple[2]
+            left_child_node: TreeNode = node.left
+            right_child_node: TreeNode = node.right
+            if left_child_node is not None:
+                new_path = current_path.copy()
+                new_path.append(left_child_node.val)
+                stack.append((left_child_node, left_sum - left_child_node.val, new_path))
+            if right_child_node is not None:
+                new_path = current_path.copy()
+                new_path.append(right_child_node.val)
+                stack.append((right_child_node, left_sum - right_child_node.val, new_path))
+
+            if left_child_node is None and right_child_node is None and left_sum == 0:
+                retval.append(current_path)
+        return retval

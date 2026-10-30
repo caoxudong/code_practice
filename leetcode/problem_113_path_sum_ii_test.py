@@ -10,7 +10,15 @@ class UnitTestData:
         self.expected = expected
 
 
-unittest_data: list[UnitTestData] = []
+unittest_data: list[UnitTestData] = [
+    UnitTestData(
+        root=TreeNode.from_list([5, 4, 8, 11, None, 13, 4, 7, 2, None, None, 5, 1]),
+        targetSum=22,
+        expected=[[5, 4, 11, 2], [5, 8, 4, 5]],
+    ),
+    UnitTestData(root=TreeNode.from_list([1, 2, 3]), targetSum=5, expected=[]),
+    UnitTestData(root=TreeNode.from_list([1, 2]), targetSum=0, expected=[]),
+]
 
 
 class TestSolution(unittest.TestCase):
