@@ -49,4 +49,19 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
-        return None
+        self.q = []
+
+        def preorder(node):
+            if not node:
+                return
+            self.q.append(node)
+            preorder(node.left)
+            preorder(node.right)
+
+        preorder(root)
+        if self.q:
+            self.q.pop(0)  # root will be reused
+        while self.q:
+            root.right = self.q.pop(0)
+            root.left = None
+            root = root.right
