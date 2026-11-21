@@ -55,10 +55,44 @@ class Node:
         self.right = right
         self.next = next
 
+    @staticmethod
+    def create_by_nodes(val: int = 0, left: Node = None, right: Node = None, next: Node = None) -> Node:
+        return Node(val=val, left=left, right=right, next=next)
+
+    def set_next(self, next_node: "Node") -> Node:
+        self.next = next_node
+        return self
+
+    def set_left(self, left_node: "Node") -> Node:
+        self.left = left_node
+        return self
+
+    def set_right(self, right_node: "Node") -> Node:
+        self.right = right_node
+        return self
+
 
 from typing import Optional
 
 
 class Solution:
     def connect(self, root: Optional[Node]) -> Optional[Node]:
-        return None
+        if not root:
+            return root
+
+        from collections import deque
+
+        q = deque([root])
+
+        while q:
+            size = len(q)
+            for i in range(size):
+                node = q.popleft()
+                if i < size - 1:
+                    node.next = q[0]
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
+
+        return root

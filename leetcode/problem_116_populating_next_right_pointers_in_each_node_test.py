@@ -9,19 +9,32 @@ class UnitTestData:
         self.expected = expected
 
 
+node1 = problem.Node(1)
+node2 = problem.Node(2)
+node3 = problem.Node(3)
+node4 = problem.Node(4)
+node5 = problem.Node(5)
+node6 = problem.Node(6)
+node7 = problem.Node(7)
+node2.set_next(node3)
+node4.set_next(node5)
+node5.set_next(node6)
+node6.set_next(node7)
 unittest_data: list[UnitTestData] = [
     UnitTestData(
-        root=problem.Node(
-            1,
-            left=problem.Node(2, left=problem.Node(4), right=problem.Node(5)),
-            right=problem.Node(3, left=problem.Node(6), right=problem.Node(7)),
-        ),
-        expected=problem.Node(
-            1,
-            left=problem.Node(
-                2, left=problem.Node(4), right=problem.Node(5, next=problem.Node(6, next=problem.Node(7)))
+        root=problem.Node.create_by_nodes(
+            val=1,
+            left=problem.Node.create_by_nodes(
+                val=2, left=problem.Node.create_by_nodes(val=4), right=problem.Node.create_by_nodes(val=5)
             ),
-            right=problem.Node(3, left=problem.Node(6, next=problem.Node(7)), right=problem.Node(7)),
+            right=problem.Node.create_by_nodes(
+                val=3, left=problem.Node.create_by_nodes(val=6), right=problem.Node.create_by_nodes(val=7)
+            ),
+        ),
+        expected=problem.Node.create_by_nodes(
+            val=1,
+            left=node2.set_left(node4).set_right(node5),
+            right=node3.set_left(node6).set_right(node7),
         ),
     ),
     UnitTestData(
