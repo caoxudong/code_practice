@@ -1,5 +1,5 @@
 import unittest
-import leetcode.problem_117_pascal_triangle as problem
+import leetcode.problem_118_pascal_triangle as problem
 
 
 class UnitTestData:
