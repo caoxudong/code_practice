@@ -27,8 +27,6 @@ Constraints:
 * 0 <= prices[i] <= 104
 """
 
-from turtle import right
-
 
 class Solution:
     def maxProfit(self, prices: list[int]) -> int:
@@ -40,9 +38,7 @@ class Solution:
 
         max_profit_buy_index = 0
         max_profit_sell_index = 1
-        max_profit = max(
-            0, prices[max_profit_sell_index] - prices[max_profit_buy_index]
-        )
+        max_profit = max(0, prices[max_profit_sell_index] - prices[max_profit_buy_index])
 
         buy_index = max_profit_buy_index
         sell_index = max_profit_sell_index
@@ -52,9 +48,7 @@ class Solution:
                 if max_profit < prices[sell_index] - prices[buy_index]:
                     max_profit_buy_index = buy_index
                     max_profit_sell_index = sell_index
-                    max_profit = (
-                        prices[max_profit_sell_index] - prices[max_profit_buy_index]
-                    )
+                    max_profit = prices[max_profit_sell_index] - prices[max_profit_buy_index]
 
                 buy_index = tmp_index
                 sell_index = tmp_index
